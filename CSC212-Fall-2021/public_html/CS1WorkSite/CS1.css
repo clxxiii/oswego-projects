@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 body {
     background: #DDFFFF;
     font-family: 'Nunito', sans-serif;
@@ -19,11 +19,13 @@ em {
 
 h1 {
     color: #0EB8B9;
+    font-family: 'Montserrat', sans-serif;
     font-size: 150%;
 }
 
 h2 {
     color: #0EB8B9;
+    font-family: 'Montserrat', sans-serif;
     font-size: 120%;
 }
 
@@ -114,13 +116,13 @@ div.container {
 span.button {
     color: black;
     font-weight: bold;
-    font-family: Monospace;    
+    font-family: Monospace;
 }
 
 span.item {
     color: black;
     font-weight: bold;
-    font-family: Monospace;    
+    font-family: Monospace;
 }
 
 span.menuitem {
@@ -188,147 +190,147 @@ span.due {
 }
 
 /* use this to reference document that models an assignment */
-span.model { 
+span.model {
     color: blue;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.module { 
+span.module {
     color: #9933ff;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.metamodule { 
+span.metamodule {
     color: orange;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.source { 
+span.source {
     color: brown;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.handout { 
+span.handout {
     color: #0099cc;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.qod { 
+span.qod {
     color: #13579A;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.quote { 
+span.quote {
     color: #A97531;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.shorttext { 
+span.shorttext {
     color: #AF2357;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.hilite { 
+span.hilite {
     color: blue;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.extraparameter { 
+span.extraparameter {
     color: blue;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.escapetoprolog { 
+span.escapetoprolog {
     color: red;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.blue { 
+span.blue {
     color: blue;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.plainred { 
+span.plainred {
     color: red;
     font-weight: plain;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.plainblue { 
+span.plainblue {
     color: blue;
     font-weight: plain;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.plaingreen { 
+span.plaingreen {
     color: green;
     font-weight: plain;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.green { 
+span.green {
     color: green;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.purple { 
+span.purple {
     color: purple;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.lecture { 
+span.lecture {
     color: #33EE88;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.slide { 
+span.slide {
     color: #AA3399;
     font-weight: bold;
     font-family: serif;
 }
 
 /* use this to reference document that models an assignment */
-span.mono { 
+span.mono {
     color: black;
     font-weight: plain;
     font-family: monospace;
 }
 
 /* use this for inline output */
-span.inlineoutput { 
+span.inlineoutput {
     color: black;
     font-weight: plain;
     font-family: monospace;
@@ -345,4 +347,3 @@ param {
     font-family: monospace;
     font-style: italic;
 }
-
