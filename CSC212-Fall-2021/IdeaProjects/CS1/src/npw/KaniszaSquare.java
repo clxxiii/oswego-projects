@@ -38,7 +38,8 @@ public class KaniszaSquare {
     }
 
     public void paintWhiteSquare(SPainter painter, SSquare square) {
-
+        painter.setColor(Color.WHITE);
+        painter.paint(square);
     }
     // Necessary for NPW
     public KaniszaSquare() { paintTheImage(); }
