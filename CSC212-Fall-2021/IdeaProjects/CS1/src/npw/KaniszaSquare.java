@@ -5,6 +5,7 @@ import shapes.SCircle;
 import shapes.SSquare;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class KaniszaSquare {
     public void paintTheImage() {
@@ -23,6 +24,21 @@ public class KaniszaSquare {
 
     public void drawBlackSquare(SPainter painter, SSquare square) {
         painter.setHeading(45.0);
+        painter.setColor(Color.BLACK);
+        painter.draw(square);
+        painter.setHeading(0.0);
+    }
+
+    public void paintBlueCircles(SPainter painter, SCircle dot) {
+        
+    }
+
+    public void paintGreenCircles(SPainter painter, SCircle dot) {
+
+    }
+
+    public void paintWhiteSquare(SPainter painter, SSquare square) {
+
     }
     // Necessary for NPW
     public KaniszaSquare() { paintTheImage(); }
