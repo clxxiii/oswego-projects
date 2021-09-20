@@ -30,7 +30,7 @@ public class KaniszaSquare {
     }
 
     public void paintBlueCircles(SPainter painter, SCircle dot) {
-        
+
     }
 
     public void paintGreenCircles(SPainter painter, SCircle dot) {
