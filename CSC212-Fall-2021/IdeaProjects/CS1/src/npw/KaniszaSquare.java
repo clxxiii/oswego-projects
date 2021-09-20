@@ -30,17 +30,33 @@ public class KaniszaSquare {
     }
 
     public void paintBlueCircles(SPainter painter, SCircle dot) {
+        Color color = Color.BLUE;
 
+        moveAndPaintCircle(painter, dot, 100.0, -100.0, color);
+        moveAndPaintCircle(painter, dot, -100.0, 100.0, color);
     }
 
     public void paintGreenCircles(SPainter painter, SCircle dot) {
+        Color color = Color.GREEN;
 
+        moveAndPaintCircle(painter, dot, -100.0, -100.0, color);
+        moveAndPaintCircle(painter, dot, 100.0, 100.0, color);
     }
 
     public void paintWhiteSquare(SPainter painter, SSquare square) {
         painter.setColor(Color.WHITE);
         painter.paint(square);
     }
+    // Method for moving and painting circles to cut down on code size
+    public void moveAndPaintCircle(SPainter painter, SCircle dot, double moveNorth, double moveWest, Color color) {
+        painter.mfd(moveNorth);
+        painter.setHeading(90); painter.mfd(moveWest);
+        painter.setColor(color);
+        painter.paint(dot);
+        painter.mbk(moveWest);
+        painter.faceNorth(); painter.mbk(moveNorth);
+    }
+
     // Necessary for NPW
     public KaniszaSquare() { paintTheImage(); }
 
