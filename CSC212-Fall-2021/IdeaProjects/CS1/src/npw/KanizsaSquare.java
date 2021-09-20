@@ -7,7 +7,7 @@ import shapes.SSquare;
 import javax.swing.*;
 import java.awt.*;
 
-public class KaniszaSquare {
+public class KanizsaSquare {
     public void paintTheImage() {
         // Make Objects
         SPainter painter = new SPainter("Kanizsa Square",400,400);
@@ -58,13 +58,13 @@ public class KaniszaSquare {
     }
 
     // Necessary for NPW
-    public KaniszaSquare() { paintTheImage(); }
+    public KanizsaSquare() { paintTheImage(); }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new KaniszaSquare();
+                new KanizsaSquare();
             }
         });
     }
