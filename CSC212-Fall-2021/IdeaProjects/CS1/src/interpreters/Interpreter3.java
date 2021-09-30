@@ -30,6 +30,7 @@ public class Interpreter3 {
         while (true) {
             String command = JOptionPane.showInputDialog(null, "Command?");
             if ( command == null ) { command = "exit"; } // User clicked on cancel
+
             if ( command.equalsIgnoreCase("blue") ) {
                 miro.setColor(Color.BLUE);
                 miro.paint(dot);
