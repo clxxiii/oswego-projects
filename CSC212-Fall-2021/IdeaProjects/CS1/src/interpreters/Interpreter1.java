@@ -12,7 +12,6 @@ package interpreters;
 import painter.SPainter;
 import shapes.SCircle;
 
-import javax.naming.InsufficientResourcesException;
 import javax.swing.*;
 import java.awt.*;
 

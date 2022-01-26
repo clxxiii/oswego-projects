@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>PersonDemo1.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #8c8c8c; font-style: italic;}
+.s1 { color: #080808;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+.ln { color: #adadad; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PersonDemo1.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">/* 
+<a name="l2"><span class="ln">2    </span></a> * Tester class for the Person class 
+<a name="l3"><span class="ln">3    </span></a> */</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s2">package </span><span class="s1">people;</span>
+<a name="l5"><span class="ln">5    </span></a>
+<a name="l6"><span class="ln">6    </span></a><span class="s2">public class </span><span class="s1">PersonDemo1 {</span>
+<a name="l7"><span class="ln">7    </span></a>
+<a name="l8"><span class="ln">8    </span></a>    <span class="s2">public static void </span><span class="s1">main(String[] args) {</span>
+<a name="l9"><span class="ln">9    </span></a>
+<a name="l10"><span class="ln">10   </span></a>        <span class="s0">// Create the six person objects</span>
+<a name="l11"><span class="ln">11   </span></a>        <span class="s1">Person bd = </span><span class="s2">new </span><span class="s1">Person(</span><span class="s3">&quot;Bob Dylan&quot;</span><span class="s1">, </span><span class="s4">5</span><span class="s1">,</span><span class="s4">24</span><span class="s1">,</span><span class="s4">1941</span><span class="s1">);</span>
+<a name="l12"><span class="ln">12   </span></a>        <span class="s1">Person nr = </span><span class="s2">new </span><span class="s1">Person(</span><span class="s3">&quot;Noomi Rapace&quot;</span><span class="s1">, </span><span class="s4">12</span><span class="s1">,</span><span class="s4">28</span><span class="s1">,</span><span class="s4">1974</span><span class="s1">);</span>
+<a name="l13"><span class="ln">13   </span></a>        <span class="s1">Person pw = </span><span class="s2">new </span><span class="s1">Person(</span><span class="s3">&quot;Pharrell Williams&quot;</span><span class="s1">, </span><span class="s4">4</span><span class="s1">,</span><span class="s4">5</span><span class="s1">,</span><span class="s4">1973</span><span class="s1">);</span>
+<a name="l14"><span class="ln">14   </span></a>        <span class="s1">Person fs = </span><span class="s2">new </span><span class="s1">Person(</span><span class="s3">&quot;Frank Sinatra&quot;</span><span class="s1">, </span><span class="s4">12</span><span class="s1">,</span><span class="s4">12</span><span class="s1">,</span><span class="s4">1915</span><span class="s1">);</span>
+<a name="l15"><span class="ln">15   </span></a>        <span class="s1">Person dk = </span><span class="s2">new </span><span class="s1">Person(</span><span class="s3">&quot;Diana Krall&quot;</span><span class="s1">, </span><span class="s4">11</span><span class="s1">,</span><span class="s4">16</span><span class="s1">,</span><span class="s4">1964</span><span class="s1">);</span>
+<a name="l16"><span class="ln">16   </span></a>        <span class="s1">Person ef = </span><span class="s2">new </span><span class="s1">Person(</span><span class="s3">&quot;Eli Fereira&quot;</span><span class="s1">, </span><span class="s4">6</span><span class="s1">,</span><span class="s4">29</span><span class="s1">,</span><span class="s4">2003</span><span class="s1">);</span>
+<a name="l17"><span class="ln">17   </span></a>
+<a name="l18"><span class="ln">18   </span></a>        <span class="s0">// Display the six person objects to the standard output stream</span>
+<a name="l19"><span class="ln">19   </span></a>        <span class="s1">System.out.println(bd + </span><span class="s3">&quot; &quot; </span><span class="s1">+ bd.initials() + </span><span class="s3">&quot; &quot; </span><span class="s1">+ bd.isBoomer());</span>
+<a name="l20"><span class="ln">20   </span></a>        <span class="s1">System.out.println(nr + </span><span class="s3">&quot; &quot; </span><span class="s1">+ nr.initials() + </span><span class="s3">&quot; &quot; </span><span class="s1">+ nr.isBoomer());</span>
+<a name="l21"><span class="ln">21   </span></a>        <span class="s1">System.out.println(pw + </span><span class="s3">&quot; &quot; </span><span class="s1">+ pw.initials() + </span><span class="s3">&quot; &quot; </span><span class="s1">+ pw.isBoomer());</span>
+<a name="l22"><span class="ln">22   </span></a>        <span class="s1">System.out.println(fs + </span><span class="s3">&quot; &quot; </span><span class="s1">+ fs.initials() + </span><span class="s3">&quot; &quot; </span><span class="s1">+ fs.isBoomer());</span>
+<a name="l23"><span class="ln">23   </span></a>        <span class="s1">System.out.println(dk + </span><span class="s3">&quot; &quot; </span><span class="s1">+ dk.initials() + </span><span class="s3">&quot; &quot; </span><span class="s1">+ dk.isBoomer());</span>
+<a name="l24"><span class="ln">24   </span></a>        <span class="s1">System.out.println(ef + </span><span class="s3">&quot; &quot; </span><span class="s1">+ ef.initials() + </span><span class="s3">&quot; &quot; </span><span class="s1">+ ef.isBoomer());</span>
+<a name="l25"><span class="ln">25   </span></a>    <span class="s1">}</span>
+<a name="l26"><span class="ln">26   </span></a><span class="s1">}</span>
+<a name="l27"><span class="ln">27   </span></a></pre>
+</body>
+</html>

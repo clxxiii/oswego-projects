@@ -116,37 +116,37 @@ div.container {
 span.button {
     color: black;
     font-weight: bold;
-    font-family: Monospace;
+    font-family: 'Montserrat';
 }
 
 span.item {
     color: black;
     font-weight: bold;
-    font-family: Monospace;
+    font-family: 'Montserrat';
 }
 
 span.menuitem {
     color: black;
     font-weight: bold;
-    font-family: Monospace;
+    font-family: 'Montserrat';
 }
 
 span.textinput {
     color: black;
     font-weight: bold;
-    font-family: Monospace;
+    font-family: 'Montserrat';
 }
 
 span.textoutput {
     color: black;
     font-weight: bold;
-    font-family: Monospace;
+    font-family: 'Montserrat';
 }
 
 span.date {
     color: black;
     font-weight: bold;
-    font-family: Monospace;
+    font-family: 'Montserrat';
 }
 
 span.metanote {
@@ -158,192 +158,192 @@ span.metanote {
 span.do {
     color: grey;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference a handout that says something about a course */
 span.meta {
     color: #cc9900;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to indicate the distribution of a new assignment */
 span.new {
     color: green;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to indicate the distribution of a new assignment */
 span.ideal {
     color: cyan;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to indicate the due date of an assignment */
 span.due {
     color: red;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.model {
     color: blue;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.module {
     color: #9933ff;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.metamodule {
     color: orange;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.source {
     color: brown;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.handout {
     color: #0099cc;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.qod {
     color: #13579A;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.quote {
     color: #A97531;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.shorttext {
     color: #AF2357;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.hilite {
     color: blue;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.extraparameter {
     color: blue;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.escapetoprolog {
     color: red;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.blue {
     color: blue;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.plainred {
     color: red;
     font-weight: plain;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.plainblue {
     color: blue;
     font-weight: plain;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.plaingreen {
     color: green;
     font-weight: plain;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.green {
     color: green;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.purple {
     color: purple;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.lecture {
     color: #33EE88;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.slide {
     color: #AA3399;
     font-weight: bold;
-    font-family: serif;
+    font-family: 'Montserrat';
 }
 
 /* use this to reference document that models an assignment */
 span.mono {
     color: black;
     font-weight: plain;
-    font-family: monospace;
+    font-family: 'Montserrat';
 }
 
 /* use this for inline output */
 span.inlineoutput {
     color: black;
     font-weight: plain;
-    font-family: monospace;
+    font-family: 'Montserrat';
 }
 
 code {
     color: #000000;
     font-weight: plain;
-    font-family: monospace;
+    font-family: 'Montserrat';
 }
 param {
     color: #000000;
     font-weight: plain;
-    font-family: monospace;
+    font-family: 'Montserrat';
     font-style: italic;
 }

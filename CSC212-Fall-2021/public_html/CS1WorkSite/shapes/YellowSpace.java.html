@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>YellowSpace.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #8c8c8c; font-style: italic;}
+.s1 { color: #080808;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+.ln { color: #adadad; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+YellowSpace.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">/* 
+<a name="l2"><span class="ln">2    </span></a> * A program for calculating the yellow space on the diagram in Challenge 3 
+<a name="l3"><span class="ln">3    </span></a> */</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s2">package </span><span class="s1">shapes;</span>
+<a name="l5"><span class="ln">5    </span></a>
+<a name="l6"><span class="ln">6    </span></a><span class="s2">public class </span><span class="s1">YellowSpace {</span>
+<a name="l7"><span class="ln">7    </span></a>    <span class="s2">public static void </span><span class="s1">main(String[] args) {</span>
+<a name="l8"><span class="ln">8    </span></a>        <span class="s2">int </span><span class="s1">tableclothSideLength = </span><span class="s3">800</span><span class="s1">;</span>
+<a name="l9"><span class="ln">9    </span></a>        <span class="s2">int </span><span class="s1">diamondDistanceFromTablecloth = </span><span class="s3">80</span><span class="s1">;</span>
+<a name="l10"><span class="ln">10   </span></a>        <span class="s2">int </span><span class="s1">squareDistanceFromDiamond = </span><span class="s3">40</span><span class="s1">;</span>
+<a name="l11"><span class="ln">11   </span></a>
+<a name="l12"><span class="ln">12   </span></a>        <span class="s0">// Create the yellow diamond</span>
+<a name="l13"><span class="ln">13   </span></a>        <span class="s2">double </span><span class="s1">diamondCircleDiameter = tableclothSideLength - (diamondDistanceFromTablecloth * </span><span class="s3">2</span><span class="s1">);</span>
+<a name="l14"><span class="ln">14   </span></a>        <span class="s1">SCircle diamondCircle = </span><span class="s2">new </span><span class="s1">SCircle(diamondCircleDiameter / </span><span class="s3">2</span><span class="s1">);</span>
+<a name="l15"><span class="ln">15   </span></a>        <span class="s1">SSquare diamond = diamondCircle.inscribingSquare();</span>
+<a name="l16"><span class="ln">16   </span></a>
+<a name="l17"><span class="ln">17   </span></a>        <span class="s0">// Create the square</span>
+<a name="l18"><span class="ln">18   </span></a>        <span class="s2">double </span><span class="s1">squareCircleDiameter = diamond.side() - (squareDistanceFromDiamond * </span><span class="s3">2</span><span class="s1">);</span>
+<a name="l19"><span class="ln">19   </span></a>        <span class="s1">SCircle squareCircle = </span><span class="s2">new </span><span class="s1">SCircle(squareCircleDiameter / </span><span class="s3">2</span><span class="s1">);</span>
+<a name="l20"><span class="ln">20   </span></a>        <span class="s1">SSquare greySquare = squareCircle.inscribingSquare();</span>
+<a name="l21"><span class="ln">21   </span></a>
+<a name="l22"><span class="ln">22   </span></a>        <span class="s0">// Calculate and print the yellow space</span>
+<a name="l23"><span class="ln">23   </span></a>        <span class="s2">double </span><span class="s1">yellowSpace = diamond.area() - greySquare.area();</span>
+<a name="l24"><span class="ln">24   </span></a>        <span class="s1">System.out.println(</span><span class="s4">&quot;Yellow Space: &quot; </span><span class="s1">+ yellowSpace);</span>
+<a name="l25"><span class="ln">25   </span></a>    <span class="s1">}</span>
+<a name="l26"><span class="ln">26   </span></a><span class="s1">}</span>
+<a name="l27"><span class="ln">27   </span></a></pre>
+</body>
+</html>

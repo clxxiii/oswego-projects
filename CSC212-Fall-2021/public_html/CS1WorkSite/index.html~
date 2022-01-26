@@ -1,0 +1,210 @@
+<html>
+  <head>
+    <title>Personal CS1 Work Site</title>
+    <link href="CS1.css" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+  <body>
+
+
+
+    <div class="block">
+      <h1>Eli Fereira's CS1 Work Site</h1>
+      <p>This site represents work that I have done in support of my efforts to learn to program in the CS1 course at SUNY Oswego during the Fall 2020 semester. The materials will be temporally organized for the most part. Links to external sites that pertain to computer programming, problem solving, Java, Web development, and related matters will be placed after the personally created artifacts.
+      </p>
+    </div>
+
+    <div class="block">
+      <h2>Course Work</h2>
+      <p class="activity">
+	<b>Lab 1: "Hello World! Hello You!"</b><br>
+	A first set of programming examples and exercises designed to establish a framework for learning to program.<br>
+  <ul>
+	<a href="greetings/HelloWorld.java.html">HelloWorld code</a> +
+	<a href="greetings/HelloWorldDemo.html">HelloWorld demo</a> <br>
+	<a href="greetings/HelloYou.java.html">HelloYou code</a> +
+	<a href="greetings/HelloYouDemo.html">HelloYou demo</a>
+  </ul>
+      </p>
+
+      <p class="activity"> <b>Lab 2: "Hello Painter! Hello Composer!"</b><br>
+	A first set of programming examples and exercises designed to establish a framework for learning to program.<br>
+  <ul>
+	<a href="npw/BlueDot.java.html">BlueDot code</a> +
+	<a href="npw/BlueDot.png">BlueDot demo</a> <br>
+	<a href="mmw/Dorothy.java.html">Dorothy code</a> +
+	<a href="mmw/DorothyDemo.html">Dorothy demo</a> <br>
+	<a href="mmw/BasicsListener.java.html">BasicsListener code</a> +
+	<a href="mmw/BasicsListenerDemo.html">BasicsListener demo</a> <br>
+	<a href="mmw/Melody.java.html">Melody code</a> +
+	<a href="mmw/MelodyDemo.html">Melody demo</a> <br>
+	<a href="npw/Target.java.html">Target code</a> +
+	<a href="npw/Target.png">Target demo</a>
+  </ul>
+  </p>
+  <p class="activity"> <b>Programming Challenge 1: Microworld Warmup"</b><br>
+	  Programs to create images in the Nonrepresentational Painting World (NPW) and sonic sequences the Modular Melody World (MMW).<br>
+    <ul>
+	  <a href="npw/GreenT.java.html">GreenT code</a> +
+	  <a href="npw/GreenT.png">GreenT demo</a> <br>
+	  <a href="mmw/MysterySong.java.html"> MysterySong code</a> +
+	  <a href="mmw/MysterySongDemo.html"> MysterySong demo</a> <br>
+	  <a href="mmw/LocomotionListener.java.html"> LocomotionListener code</a> +
+	  <a href="mmw/LocomotionListenerDemo.html"> LocomotionListener demo</a>
+    </ul>
+  </p>
+  <p class="activity"><b>Lab 3: "Establishing a CS1 Work Site"</b><br>
+	   Setting up a Web site to house programs and demos and a few miscellaneous links.<br>
+  </p>
+  <p class="activity"> <b>Programming Challenge 2: "Microworld Problem Solving"</b><br>
+    More programs to create images in the Nonrepresentational Painting World (NPW) and sonic sequences the Modular Melody World (MMW).<br>
+    <ul>
+    <a href="npw/KanizsaSquare.java.html">KanizsaSquare code</a> +
+    <a href="npw/KanizsaSquare.png">KanizsaSquare demo</a> <br>
+    <a href="npw/Dots.java.html"> Dots code</a> +
+    <a href="npw/Dots.png"> Dots demo</a> <br>
+    <a href="mmw/MusicalScene.java.html"> MusicalScene code</a> +
+    <a href="mmw/MusicalSceneDemo.html"> MusicalScene demo</a>
+    </ul>
+  </p>
+  <p class="activity"> <b>Lab 4: "Expressions and Shapes World Problem Solving"</b><br>
+    Work with expressions and variables and applying them to the creation of Shapes<br>
+    <ul>
+    <a href="expressions/ExpressionsThing.java.html">ExpressionsThing code</a> +
+    <a href="expressions/ExpressionsThingDemo.html">ExpressionsThing demo</a> <br>
+    <a href="shapes/ShapesThing.java.html">ShapesThing code</a> +
+    <a href="shapes/ShapesThingDemo.html">ShapesThing demo</a>
+    </ul>
+  </p>
+  <p class="activity"> <b>Lab 5: "An Interpreter Featuring <i>Loop Forever</i> and Selection"</b><br>
+    Create Interpreters to take commands and make different colors of dots.<br>
+    <ul>
+    <a href="interpreters/Interpreter1.java.html">Interpreter1 code</a> +
+    <a href="interpreters/Interpreter2.java.html">Interpreter2 code</a> +
+    <a href="interpreters/Interpreter3.java.html">Interpreter3 code</a> <br>
+    <a href="interpreters/dot.png">Random Dot Example</a> +
+    <a href="interpreters/input.png">Input Example</a> +
+    <a href="interpreters/help.png">Help Example</a> +
+    <a href="interpreters/error.png">Error Example</a>
+    </ul>
+  </p>
+  <p class="activity"> <b>Lab 6: "Functions and Commands"</b><br>
+	  Create classes to compute numbers and paint pictures using functions ang commands<br>
+    <ul>
+	  <a href="mathematics/SurfaceAreaOfCube.java.html">SurfaceAreaOfCube code</a> +
+	  <a href="mathematics/SurfaceAreaOfCubeDemo.html">SurfaceAreaOfCube demo</a> <br>
+	  <a href="npw/Balloons.java.html">Balloons code</a> +
+	  <a href="npw/Balloons.png">Balloons demo</a> <br>
+	  <a href="npw/AlternateBalloons.java.html">AlternateBalloons code</a> +
+	  <a href="npw/AlternateBalloons.png">AlternateBalloons demo</a>
+    </ul>
+  </p>
+  <p class="activity"> <b>Lab 7: "String Thing"</b><br>
+    Working with basic String parsing functionality<br>
+    <ul>
+    <a href="stringthing/StringOps.java.html">StringOps code</a> +
+    <a href="stringthing/StringOpsDemo.html">StringOps demo</a> <br>
+    <a href="stringthing/StringThing.java.html">StringThing code</a> +
+    <a href="stringthing/StringThingDemo.html">StringThing demo</a>
+    </ul>
+</p>
+  <p class="activity"> <b>Lab 8: "Array Play"</b><br>
+    Experimenting with array functionality, and reading/writing to files.<br>
+    <ul>
+    <a href="arrayplay/Primes.java.html">Primes code</a> +
+    <a href="arrayplay/PrimesDemo.html">Primes demo</a> <br>
+    <a href="arrayplay/Streets.java.html">Streets code</a> +
+    <a href="arrayplay/StreetsDemo.html">Streets demo</a> <br>
+    <a href="arrayplay/ReverseCopy.java.html">ReverseCopy code</a> +
+    <a href="arrayplay/ReverseCopyDemo.png">ReverseCopy demo</a>
+    </ul>
+  </p>
+  <p class="activity"> <b>Programming Challenge 3: Shapes World Problem Solving</b><br>
+    Experimenting with array functionality, and reading/writing to files.<br>
+    <ul>
+    <a href="shapes/WorkSpace.java.html">WorkSpace code</a> +
+    <a href="shapes/WorkSpaceDemo.html">WorkSpace demo</a> <br>
+    <a href="shapes/WhiteSpace.java.html">WhiteSpace code</a> +
+    <a href="shapes/WhiteSpaceDemo.html">WhiteSpace demo</a> <br>
+    <a href="shapes/YellowSpace.java.html">YellowSpace code</a> +
+    <a href="shapes/YellowSpaceDemo.html">YellowSpace demo</a> <br>
+    <a href="shapes/ShippingContainer.java.html">ShippingContainer code</a> +
+    <a href="shapes/ShippingContainerDemo.html">ShippingContainer demo</a>
+    </ul>
+  </p>
+  <p class="activity"> <span class="due">Due October 29th</span><br>
+    <b>Programming Challenge 4: Nonrepresentational Artistic Expressions</b><br>
+    Experimenting with array functionality, and reading/writing to files.<br>
+    <ul>
+    <a href="npw/TextRectangles.java.html">TextRectangles code</a> +
+    <a href="npw/TextRectanglesDemo.html">TextRectangles demo</a> <br>
+    <a href="npw/AbstractGradient.java.html">AbstractGradient code</a> +
+    <a href="npw/AbstractGradient.png">AbstractGradient demo</a> <br>
+    <a href="npw/ColorfulAbstractGradient.java.html">ColorfulAbstractGradient code</a> +
+    <a href="npw/ColorfulAbstractGradient.png">ColorfulAbstractGradient demo</a> <br>
+    <a href="npw/HirstDots.java.html">HirstDots code</a> +
+    <a href="npw/HirstDots.png">HirstDots demo</a> <br>
+    <a href="npw/SimpleDots.java.html">SimpleDots code</a> +
+    <a href="npw/SimpleDots.png">SimpleDots demo</a> <br>
+    <a href="npw/Invention1.java.html">Invention1 code</a> +
+    <a href="npw/Invention1.png">Invention1 demo</a> <br>
+    <a href="npw/Invention2.java.html">Invention2 code</a> +
+    <a href="npw/Invention2.png">Invention2 demo</a> <br>
+    <a href="npw/Stella.java.html">Stella code</a> +
+    <a href="npw/Stella.png">Stella demo</a>
+    </ul>
+  </p>
+  <p class="activity"> <b>Lab 9a: "Simple List Processing"</b><br>
+    Experimenting with ArrayList functionality, and reading/writing to files.<br>
+    <ul>
+    <a href="arraylistplay/Primes.java.html">Primes code</a> +
+    <a href="arraylistplay/PrimesDemo.html">Primes demo</a> <br>
+    <a href="arraylistplay/Streets.java.html">Streets code</a> +
+    <a href="arraylistplay/StreetsDemo.html">Streets demo</a> <br>
+    <a href="arraylistplay/ReverseCopy.java.html">ReverseCopy code</a> +
+    <a href="arraylistplay/ReverseCopyDemo.png">ReverseCopy demo</a>
+    </ul>
+  </p>
+  <p class="activity"> <b>Lab 10: "Establishing and using classes"</b><br>
+    Using classes to replicate real life objects, in this case an X-sided die.<br>
+    <ul>
+    <a href="chance/Die.java.html">Die code</a> <br> 
+    <a href="chanceapps/Roller.java.html">Roller code</a> +
+    <a href="chanceapps/RollerDemo.html">Roller demo</a> <br>
+    </ul>
+  </p>
+  <p class="activity"> <b>Lab 11: "Modelling Objects with Classes."</b><br>
+    Using classes to replicate the name and birhdate of people.<br>
+    <ul>
+    <a href="people/Person.java.html">Person code</a> <br> 
+    <a href="people/PersonSpecification.java.html">PersonSpecification code</a> <br> 
+    <a href="people/PersonDemo1.java.html">PersonDemo1 code</a> +
+    <a href="people/PersonDemo1Demo.html">PersonDemo1 demo</a> <br>
+    <a href="people/PersonDemo2.java.html">PersonDemo2 code</a> +
+    <a href="people/PersonDemo2Demo.html">PersonDemo2 demo</a> <br>
+    </ul>
+  </p>
+  <p class="activity"> <b>Programming Challenge 5: "Three list interpreters."</b><br>
+    Using classes to replicate the name and birhdate of people.<br>
+    <ul>
+      <a href="arrayplay/NumberList.java.html">NumberList code</a> +
+      <a href="arrayplay/NumberListDemo.html">NumberList demo</a> <br>
+      <a href="arrayplay/WordList.java.html">WordList code</a> +
+      <a href="arrayplay/WordListDemo.html">WordList demo</a> <br>
+      <a href="arraylistplay/WordList.java.html">WordList code</a> (ArrayList Version) +
+      <a href="arraylistplay/WordListDemo.html">WordList demo</a>  (ArrayList Version)<br>
+    </ul>
+  </p>
+  </div>
+    <div class="block">
+      <p>
+	<h2>Various external sites relating to course content</h2>
+	<a href="http://math.hws.edu/javanotes/">Java Notes</a> |
+	<a href="http://www.greenteapress.com/thinkapjava/">Think Java: How to Think Like a Computer Scientist</a> |
+	<a href="http://www.java-examples.com/">Java Examples</a> |
+	<a href="http://docs.oracle.com/javase/tutorial/">Oracle's Java SE Tutorial</a> |
+	<a href="http://www.w3.org/">WWW Consortium</a>
+      </p>
+    </div>
+
+  </body>
+</html>
