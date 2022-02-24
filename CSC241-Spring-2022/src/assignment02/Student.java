@@ -5,6 +5,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+/*
+    CSC 241 Spring 2022
+    Assignment 1
+    Name: Eli Fereira
+    ID: 806061464
+ */
+
 class Student {
 	String name; // student's name
 	private String id; // student's id

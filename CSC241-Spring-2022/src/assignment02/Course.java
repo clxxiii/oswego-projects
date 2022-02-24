@@ -7,6 +7,13 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/*
+    CSC 241 Spring 2022
+    Assignment 1
+    Name: Eli Fereira
+    ID: 806061464
+ */
+
 abstract class Course {
 	String name; // course name (e.g., Programming Methodology)
 	String crn; // course crn (e.g., 14607)

@@ -2,6 +2,13 @@ package assignment02;
 
 import java.util.Scanner;
 
+/*
+    CSC 241 Spring 2022
+    Assignment 1
+    Name: Eli Fereira
+    ID: 806061464
+ */
+
 public class GradeManager {
 	public static void main(String[] args) throws Throwable {
 		// Get course code and print
