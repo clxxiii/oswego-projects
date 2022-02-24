@@ -1,6 +1,0 @@
-Name:Abstract Data Types and Programming Methodology
-CRN:14607
-Capacity:24
-Code:cs241
-Time:13:50
-Number of Sections:1
