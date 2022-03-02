@@ -1,4 +1,4 @@
-package assignment01;
+package assignments.assignment01;
 
 import java.io.*;
 import java.nio.file.*;
