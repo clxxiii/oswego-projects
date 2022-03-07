@@ -1,4 +1,4 @@
-package assignments.assignment03;
+package assignment03;
 
 /*
     CSC 241 Spring 2022
@@ -9,8 +9,10 @@ package assignments.assignment03;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.Scanner;
+import javax.json.*;
 
 public class GradeManager {
 	public static void main(String[] args) throws Exception {
@@ -22,12 +24,23 @@ public class GradeManager {
 
 		// Read a json file
 		String packageName = GradeManager.class.getPackageName();
-		Scanner scan = new Scanner(System.in);
-		String fileName = null; // TODO: you should scan the course code from user's input.
+		String fileName = getCourseCode();
 		String filePath = prop.getProperty("filepath") + File.separator + packageName + File.separator + "data"
-				+ File.separator + fileName;
+				+ File.separator + fileName + ".json";
 
-		// TODO: read a json file
+		InputStream is = new FileInputStream(filePath);
+		JsonReader jsonReader = Json.createReader(is);
+		Section section = new Section(jsonReader.readObject());
+		System.out.println(section.toString());
+
 		// TODO: update the json file as user requests to edit
+	}
+
+	private static String getCourseCode() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the name of the course: ");
+		String courseCode = sc.nextLine();
+		sc.close();
+		return courseCode;
 	}
 }
