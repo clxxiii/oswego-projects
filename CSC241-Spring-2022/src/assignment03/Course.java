@@ -23,13 +23,13 @@ class Section extends Course {
 
 	public Section(JsonObject json) {
 		// Get variables from JSON
-		super.name = json.getString("name");
-		super.crn = json.getString("crn");
-		super.code = json.getString("code");
-		this.capacity = json.getInt("capacity");
+		super.name = json.getString("Name");
+		super.crn = json.getString("CRN");
+		super.code = json.getString("Code");
+		this.capacity = json.getInt("Capacity");
 
 		// Make array of student objects from Json array
-		JsonArray studentArray = json.getJsonArray("students");
+		JsonArray studentArray = json.getJsonArray("Students");
 		curEnrol = studentArray.size();
 		students = new Student[curEnrol];
 
