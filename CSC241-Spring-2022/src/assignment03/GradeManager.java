@@ -7,12 +7,13 @@ package assignment03;
     ID: 806061464
  */
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 import javax.json.*;
+import javax.json.stream.JsonGenerator;
 
 public class GradeManager {
 	public static void main(String[] args) throws Exception {
@@ -33,7 +34,26 @@ public class GradeManager {
 		Section section = new Section(jsonReader.readObject());
 		System.out.println(section.toString());
 
+		Student student = section.getStudent(getStudentName());
+
 		// TODO: update the json file as user requests to edit
+		Map<String, Boolean> config = new HashMap<String, Boolean>();
+		config.put(JsonGenerator.PRETTY_PRINTING, true);
+		OutputStream os = new FileOutputStream(filePath + "/temp");
+		JsonWriterFactory jwFactory = Json.createWriterFactory(config);
+		JsonWriter jsonWriter = jwFactory.createWriter(os);
+
+		// jsonWriter.write(newObject);
+		jsonWriter.close();
+		os.close();
+	}
+
+	private static String getStudentName() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter a student: ");
+		String studentName = sc.nextLine();
+		sc.close();
+		return studentName;
 	}
 
 	private static String getCourseCode() {

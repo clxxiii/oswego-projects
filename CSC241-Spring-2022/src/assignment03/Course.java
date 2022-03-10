@@ -52,4 +52,8 @@ class Section extends Course {
 		return students[index];
 	}
 
+	public Student getStudent(String studentName) {
+		return null;
+	}
+
 }
