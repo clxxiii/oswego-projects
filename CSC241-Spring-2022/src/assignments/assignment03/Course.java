@@ -1,4 +1,4 @@
-package assignment03;
+package assignments.assignment03;
 
 /*
     CSC 241 Spring 2022
@@ -20,6 +20,7 @@ class Section extends Course {
 	int curEnrol; // current number of students who enrolled
 	String time;
 	Student[] students;
+	int numOfSections;
 
 	public Section(JsonObject json) {
 		// Get variables from JSON
@@ -27,6 +28,7 @@ class Section extends Course {
 		super.crn = json.getString("CRN");
 		super.code = json.getString("Code");
 		this.capacity = json.getInt("Capacity");
+		numOfSections = json.getInt("Number of Sections");
 
 		// Make array of student objects from Json array
 		JsonArray studentArray = json.getJsonArray("Students");
@@ -53,6 +55,12 @@ class Section extends Course {
 	}
 
 	public Student getStudent(String studentName) {
+		for (Student student : students) {
+			String studentTest = student.name;
+			if (studentTest.equalsIgnoreCase(studentName)) {
+				return student;
+			}
+		}
 		return null;
 	}
 

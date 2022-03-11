@@ -1,6 +1,8 @@
-package assignment03;
+package assignments.assignment03;
 
 import java.io.*;
+import java.net.NetworkInterface;
+
 import javax.json.*;
 
 /*
@@ -17,19 +19,15 @@ class Student {
 	private int[] quiz; // quiz scores (5 quizzes)
 	private int mid; // midterm score
 	private int finalExam; // final score
-
-	public Student(String name, String id, int[] quiz, int mid, int finalExam) {
-		this.name = name;
-		this.id = id;
-		this.quiz = quiz;
-		this.mid = mid;
-		this.finalExam = finalExam;
-	}
+	private JsonObject jObject;
 
 	public Student(JsonObject json) {
 		this.name = json.getString("name");
 		this.id = json.getString("id");
+		this.jObject = json;
+
 		JsonArray courseWorks = json.getJsonArray("course works");
+		quiz = new int[3];
 		for (int i = 0; i < courseWorks.size(); i++) {
 			JsonObject test = courseWorks.get(i).asJsonObject();
 			String name = test.getString("name");
@@ -56,7 +54,7 @@ class Student {
 					break;
 			}
 
-			if (0 <= nameIndex && nameIndex <= 3) {
+			if (0 <= nameIndex && nameIndex < 3) {
 				quiz[nameIndex] = test.getInt("score");
 			} else if (nameIndex == 3) {
 				mid = test.getInt("score");
@@ -66,9 +64,33 @@ class Student {
 		}
 	}
 
-	// TODO: Implement changeInfo Method
-	public void changeInfo(String key, int gradeChange) {
+	public JsonObject asJsonObject() {
+		return jObject;
+	}
 
+	public JsonObject updateInfo(String element, int score) {
+		JsonArray courseWorks = jObject.getJsonArray("course works");
+		JsonArrayBuilder jaBuilder = Json.createArrayBuilder();
+		JsonObjectBuilder joBuilder = Json.createObjectBuilder();
+		for (int i = 0; i < courseWorks.size(); i++) {
+			JsonObject value = courseWorks.get(i).asJsonObject();
+
+			if (value.getString("name").equalsIgnoreCase(element)) {
+				joBuilder.add("name", value.getString("name"));
+				joBuilder.add("score", score);
+				jaBuilder.add(joBuilder.build());
+			} else {
+				jaBuilder.add(value);
+			}
+		}
+
+		// Build Student Object again
+		JsonObjectBuilder studentBuilder = Json.createObjectBuilder();
+		studentBuilder.add("name", name);
+		studentBuilder.add("id", id);
+		studentBuilder.add("course works", jaBuilder.build());
+		JsonObject newStudentObject = studentBuilder.build();
+		return newStudentObject;
 	}
 
 	public String toString() {
