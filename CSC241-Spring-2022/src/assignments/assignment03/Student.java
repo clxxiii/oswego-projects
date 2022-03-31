@@ -66,33 +66,9 @@ class Student {
 	}
 
 	public JsonObject updateInfo(String element, int score) {
-		// Update score in class
-
-		switch (element) {
-			case "q1":
-				quiz[0] = score;
-				break;
-			case "q2":
-				quiz[1] = score;
-				break;
-			case "q3":
-				quiz[2] = score;
-				break;
-			case "midterm":
-				mid = score;
-				break;
-			case "final":
-				finalExam = score;
-				break;
-			default:
-				break;
-		}
-
-		// Update student in JSON
 		JsonArray courseWorks = jObject.getJsonArray("course works");
 		JsonArrayBuilder jaBuilder = Json.createArrayBuilder();
 		JsonObjectBuilder joBuilder = Json.createObjectBuilder();
-
 		for (int i = 0; i < courseWorks.size(); i++) {
 			JsonObject value = courseWorks.get(i).asJsonObject();
 
