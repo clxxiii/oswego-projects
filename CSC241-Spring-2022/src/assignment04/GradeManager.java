@@ -14,6 +14,7 @@ import java.util.Properties;
 import java.util.Scanner;
 import javax.json.*;
 import javax.json.stream.JsonGenerator;
+import assignment04.*;
 
 public class GradeManager {
 	public static void main(String[] args) throws Exception {
@@ -22,6 +23,10 @@ public class GradeManager {
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream("config.properties");
 		prop.load(fis);
+
+		// Searching Algorithms
+		BinarySearch binarySearch = new BinarySearch();
+		LinearSearch linearSearch = new LinearSearch();
 
 		// Prompt for course code
 		Scanner sc = new Scanner(System.in);
@@ -42,16 +47,22 @@ public class GradeManager {
 		boolean edit = true;
 		while (edit) {
 			// Ask to edit each time
-			System.out.print("Select menu [edit | quit]? ");
+			System.out.print("Select menu [find | edit | quit]? ");
 			String editString = sc.next();
 			switch (editString) {
 				case "edit":
 					edit = true;
 					break;
-
 				default:
 					edit = false;
 					break;
+			}
+
+			if (editString.equalsIgnoreCase("find")) {
+				System.out.print("Enter what you want: ");
+				String searchKey = sc.next();
+				String searchIndex = sc.next();
+				linearSearch.search(section.students, searchKey, searchIndex);
 			}
 
 			if (edit) {
