@@ -14,7 +14,8 @@ import java.util.Properties;
 import java.util.Scanner;
 import javax.json.*;
 import javax.json.stream.JsonGenerator;
-import assignment04.*;
+
+import utility.Benchmark;
 
 public class GradeManager {
 	public static void main(String[] args) throws Exception {
@@ -45,6 +46,7 @@ public class GradeManager {
 		System.out.println(section.toString());
 
 		boolean edit = true;
+		boolean find = true;
 		while (edit) {
 			// Ask to edit each time
 			System.out.print("Select menu [find | edit | quit]? ");
@@ -58,17 +60,23 @@ public class GradeManager {
 					break;
 			}
 
-			if (editString.equalsIgnoreCase("find")) {
+			Student student;
+			if (find) {
 				System.out.print("Enter what you want: ");
+				String searchType = sc.next();
 				String searchKey = sc.next();
-				String searchIndex = sc.next();
-				linearSearch.search(section.students, searchKey, searchIndex);
+				Benchmark benchmark = new Benchmark();
+				searchType = searchType.replace(",", "");
+				student = linearSearch.search(section.students, searchType, searchKey);
+				binarySearch.search(section.students, searchType, searchKey);
+				System.out.println("[Benchmark] " + benchmark.getCounterLS() + " comparisons by Linear Search, "
+						+ benchmark.getCounterBS() + " comparisons by Binary Search");
 			}
 
-			if (edit) {
+			if (edit | find) {
 				System.out.print("Enter a student: ");
 				String studentName = sc.next();
-				Student student = section.getStudent(studentName);
+				student = section.getStudent(studentName);
 				if (!(student == null)) {
 					System.out.println(student.toString());
 					// Ask for course work

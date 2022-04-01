@@ -124,4 +124,24 @@ class Student {
 				"Final: " + finalExam;
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
+	public String getId() {
+		return this.id;
+	}
+
+	public int[] getQuiz() {
+		return this.quiz;
+	}
+
+	public int getMid() {
+		return this.mid;
+	}
+
+	public int getFinalExam() {
+		return this.finalExam;
+	}
+
 }

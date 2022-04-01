@@ -1,410 +1,504 @@
 {
-  "Name": "Abstract Data Types and Programming Methodology",
-  "CRN": "14607",
-  "Capacity": 24,
-  "Code": "cs241",
-  "Time": "13:50",
-  "Number of Sections": 1,
-  "Students": [
-    {
-      "name": "Daniel",
-      "id": "144586754",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 9
-        },{
-          "name": "q2",
-          "score": 5
-        },{
-          "name": "q3",
-          "score": 7
-        },{
-          "name": "midterm",
-          "score": 79
-        },{
-          "name": "final",
-          "score": 57
-        }
-      ]
-    },{
-      "name": "David",
-      "id": "987654321",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 2
-        },{
-          "name": "q2",
-          "score": 10
-        },{
-          "name": "q3",
-          "score": 10
-        },{
-          "name": "midterm",
-          "score": 89
-        },{
-          "name": "final",
-          "score": 95
-        }
-      ]
-    },{
-      "name": "Elizabeth",
-      "id": "352386754",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 9
-        },{
-          "name": "q2",
-          "score": 9
-        },{
-          "name": "q3",
-          "score": 8
-        },{
-          "name": "midterm",
-          "score": 91
-        },{
-          "name": "final",
-          "score": 99
-        }
-      ]
-    },{
-      "name": "James",
-      "id": "342536875",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 7
-        },{
-          "name": "q2",
-          "score": 10
-        },{
-          "name": "q3",
-          "score": 9
-        },{
-          "name": "midterm",
-          "score": 63
-        },{
-          "name": "final",
-          "score": 89
-        }
-      ]
-    },{
-      "name": "Jeremy",
-      "id": "143256785",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 10
-        },{
-          "name": "q2",
-          "score": 10
-        },{
-          "name": "q3",
-          "score": 10
-        },{
-          "name": "midterm",
-          "score": 91
-        },{
-          "name": "final",
-          "score": 92
-        }
-      ]
-    },{
-      "name": "Joanna",
-      "id": "985432432",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 7
-        },{
-          "name": "q2",
-          "score": 8
-        },{
-          "name": "q3",
-          "score": 7
-        },{
-          "name": "midterm",
-          "score": 64
-        },{
-          "name": "final",
-          "score": 99
-        }
-      ]
-    },{
-      "name": "John",
-      "id": "123456789",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 10
-        },{
-          "name": "q2",
-          "score": 8
-        },{
-          "name": "q3",
-          "score": 7
-        },{
-          "name": "midterm",
-          "score": 77
-        },{
-          "name": "final",
-          "score": 72
-        }
-      ]
-    },{
-      "name": "Joseph",
-      "id": "243634234",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 10
-        },{
-          "name": "q2",
-          "score": 0
-        },{
-          "name": "q3",
-          "score": 10
-        },{
-          "name": "midterm",
-          "score": 67
-        },{
-          "name": "final",
-          "score": 100
-        }
-      ]
-    },{
-      "name": "Joshua",
-      "id": "124325343",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 10
-        },{
-          "name": "q2",
-          "score": 10
-        },{
-          "name": "q3",
-          "score": 10
-        },{
-          "name": "midterm",
-          "score": 67
-        },{
-          "name": "final",
-          "score": 79
-        }
-      ]
-    },{
-      "name": "Leah",
-      "id": "345678232",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 6
-        },{
-          "name": "q2",
-          "score": 4
-        },{
-          "name": "q3",
-          "score": 5
-        },{
-          "name": "midterm",
-          "score": 56
-        },{
-          "name": "final",
-          "score": 62
-        }
-      ]
-    },{
-      "name": "Luke",
-      "id": "536234854",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 5
-        },{
-          "name": "q2",
-          "score": 4
-        },{
-          "name": "q3",
-          "score": 5
-        },{
-          "name": "midterm",
-          "score": 77
-        },{
-          "name": "final",
-          "score": 76
-        }
-      ]
-    },{
-      "name": "Maria",
-      "id": "435623154",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 7
-        },{
-          "name": "q2",
-          "score": 8
-        },{
-          "name": "q3",
-          "score": 10
-        },{
-          "name": "midterm",
-          "score": 57
-        },{
-          "name": "final",
-          "score": 92
-        }
-      ]
-    },{
-      "name": "Mark",
-      "id": "342552322",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 5
-        },{
-          "name": "q2",
-          "score": 5
-        },{
-          "name": "q3",
-          "score": 10
-        },{
-          "name": "midterm",
-          "score": 67
-        },{
-          "name": "final",
-          "score": 97
-        }
-      ]
-    }, {
-      "name": "Matthew",
-      "id": "246864248",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 6
-        },{
-          "name": "q2",
-          "score": 5
-        },{
-          "name": "q3",
-          "score": 4
-        },{
-          "name": "midterm",
-          "score": 66
-        },{
-          "name": "final",
-          "score": 57
-        }
-      ]
-    },{
-      "name": "Paul",
-      "id": "342351985",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 10
-        },{
-          "name": "q2",
-          "score": 10
-        },{
-          "name": "q3",
-          "score": 2
-        },{
-          "name": "midterm",
-          "score": 98
-        },{
-          "name": "final",
-          "score": 42
-        }
-      ]
-    },{
-      "name": "Rachel",
-      "id": "555333111",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 8
-        },{
-          "name": "q2",
-          "score": 7
-        },{
-          "name": "q3",
-          "score": 5
-        },{
-          "name": "midterm",
-          "score": 90
-        },{
-          "name": "final",
-          "score": 91
-        }
-      ]
-    },{
-      "name": "Samuel",
-      "id": "352676329",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 7
-        },{
-          "name": "q2",
-          "score": 9
-        },{
-          "name": "q3",
-          "score": 8
-        },{
-          "name": "midterm",
-          "score": 87
-        },{
-          "name": "final",
-          "score": 86
-        }
-      ]
-    },{
-      "name": "Sarah",
-      "id": "143256324",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 3
-        },{
-          "name": "q2",
-          "score": 7
-        },{
-          "name": "q3",
-          "score": 9
-        },{
-          "name": "midterm",
-          "score": 72
-        },{
-          "name": "final",
-          "score": 87
-        }
-      ]
-    },{
-      "name": "Steven",
-      "id": "425323411",
-      "course works":[
-        {
-          "name": "q1",
-          "score": 6
-        },{
-          "name": "q2",
-          "score": 5
-        },{
-          "name": "q3",
-          "score": 9
-        },{
-          "name": "midterm",
-          "score": 96
-        },{
-          "name": "final",
-          "score": 78
-        }
-      ]
-    }
-  ]
+	"Name": "Abstract Data Types and Programming Methodology",
+	"CRN": "14607",
+	"Capacity": 24,
+	"Code": "cs241",
+	"Time": "13:50",
+	"Number of Sections": 1,
+	"Students": [
+		{
+			"name": "Daniel",
+			"id": "144586754",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 9
+				},
+				{
+					"name": "q2",
+					"score": 5
+				},
+				{
+					"name": "q3",
+					"score": 7
+				},
+				{
+					"name": "midterm",
+					"score": 79
+				},
+				{
+					"name": "final",
+					"score": 57
+				}
+			]
+		},
+		{
+			"name": "David",
+			"id": "987654321",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 2
+				},
+				{
+					"name": "q2",
+					"score": 10
+				},
+				{
+					"name": "q3",
+					"score": 10
+				},
+				{
+					"name": "midterm",
+					"score": 89
+				},
+				{
+					"name": "final",
+					"score": 95
+				}
+			]
+		},
+		{
+			"name": "Elizabeth",
+			"id": "352386754",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 9
+				},
+				{
+					"name": "q2",
+					"score": 9
+				},
+				{
+					"name": "q3",
+					"score": 8
+				},
+				{
+					"name": "midterm",
+					"score": 91
+				},
+				{
+					"name": "final",
+					"score": 99
+				}
+			]
+		},
+		{
+			"name": "James",
+			"id": "342536875",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 7
+				},
+				{
+					"name": "q2",
+					"score": 10
+				},
+				{
+					"name": "q3",
+					"score": 9
+				},
+				{
+					"name": "midterm",
+					"score": 63
+				},
+				{
+					"name": "final",
+					"score": 89
+				}
+			]
+		},
+		{
+			"name": "Jeremy",
+			"id": "143256785",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 10
+				},
+				{
+					"name": "q2",
+					"score": 10
+				},
+				{
+					"name": "q3",
+					"score": 10
+				},
+				{
+					"name": "midterm",
+					"score": 91
+				},
+				{
+					"name": "final",
+					"score": 92
+				}
+			]
+		},
+		{
+			"name": "Joanna",
+			"id": "985432432",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 7
+				},
+				{
+					"name": "q2",
+					"score": 8
+				},
+				{
+					"name": "q3",
+					"score": 7
+				},
+				{
+					"name": "midterm",
+					"score": 64
+				},
+				{
+					"name": "final",
+					"score": 99
+				}
+			]
+		},
+		{
+			"name": "John",
+			"id": "123456789",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 10
+				},
+				{
+					"name": "q2",
+					"score": 8
+				},
+				{
+					"name": "q3",
+					"score": 7
+				},
+				{
+					"name": "midterm",
+					"score": 77
+				},
+				{
+					"name": "final",
+					"score": 72
+				}
+			]
+		},
+		{
+			"name": "Joseph",
+			"id": "243634234",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 10
+				},
+				{
+					"name": "q2",
+					"score": 0
+				},
+				{
+					"name": "q3",
+					"score": 10
+				},
+				{
+					"name": "midterm",
+					"score": 67
+				},
+				{
+					"name": "final",
+					"score": 100
+				}
+			]
+		},
+		{
+			"name": "Joshua",
+			"id": "124325343",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 10
+				},
+				{
+					"name": "q2",
+					"score": 10
+				},
+				{
+					"name": "q3",
+					"score": 10
+				},
+				{
+					"name": "midterm",
+					"score": 67
+				},
+				{
+					"name": "final",
+					"score": 79
+				}
+			]
+		},
+		{
+			"name": "Leah",
+			"id": "345678232",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 6
+				},
+				{
+					"name": "q2",
+					"score": 4
+				},
+				{
+					"name": "q3",
+					"score": 5
+				},
+				{
+					"name": "midterm",
+					"score": 56
+				},
+				{
+					"name": "final",
+					"score": 62
+				}
+			]
+		},
+		{
+			"name": "Luke",
+			"id": "536234854",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 5
+				},
+				{
+					"name": "q2",
+					"score": 4
+				},
+				{
+					"name": "q3",
+					"score": 5
+				},
+				{
+					"name": "midterm",
+					"score": 77
+				},
+				{
+					"name": "final",
+					"score": 76
+				}
+			]
+		},
+		{
+			"name": "Maria",
+			"id": "435623154",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 7
+				},
+				{
+					"name": "q2",
+					"score": 8
+				},
+				{
+					"name": "q3",
+					"score": 10
+				},
+				{
+					"name": "midterm",
+					"score": 57
+				},
+				{
+					"name": "final",
+					"score": 92
+				}
+			]
+		},
+		{
+			"name": "Mark",
+			"id": "342552322",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 5
+				},
+				{
+					"name": "q2",
+					"score": 5
+				},
+				{
+					"name": "q3",
+					"score": 10
+				},
+				{
+					"name": "midterm",
+					"score": 67
+				},
+				{
+					"name": "final",
+					"score": 97
+				}
+			]
+		},
+		{
+			"name": "Matthew",
+			"id": "246864248",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 6
+				},
+				{
+					"name": "q2",
+					"score": 5
+				},
+				{
+					"name": "q3",
+					"score": 4
+				},
+				{
+					"name": "midterm",
+					"score": 66
+				},
+				{
+					"name": "final",
+					"score": 57
+				}
+			]
+		},
+		{
+			"name": "Paul",
+			"id": "342351985",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 10
+				},
+				{
+					"name": "q2",
+					"score": 10
+				},
+				{
+					"name": "q3",
+					"score": 2
+				},
+				{
+					"name": "midterm",
+					"score": 98
+				},
+				{
+					"name": "final",
+					"score": 42
+				}
+			]
+		},
+		{
+			"name": "Rachel",
+			"id": "555333111",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 8
+				},
+				{
+					"name": "q2",
+					"score": 7
+				},
+				{
+					"name": "q3",
+					"score": 5
+				},
+				{
+					"name": "midterm",
+					"score": 90
+				},
+				{
+					"name": "final",
+					"score": 91
+				}
+			]
+		},
+		{
+			"name": "Samuel",
+			"id": "352676329",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 7
+				},
+				{
+					"name": "q2",
+					"score": 9
+				},
+				{
+					"name": "q3",
+					"score": 8
+				},
+				{
+					"name": "midterm",
+					"score": 87
+				},
+				{
+					"name": "final",
+					"score": 86
+				}
+			]
+		},
+		{
+			"name": "Sarah",
+			"id": "143256324",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 3
+				},
+				{
+					"name": "q2",
+					"score": 7
+				},
+				{
+					"name": "q3",
+					"score": 9
+				},
+				{
+					"name": "midterm",
+					"score": 72
+				},
+				{
+					"name": "final",
+					"score": 87
+				}
+			]
+		},
+		{
+			"name": "Steven",
+			"id": "425323411",
+			"course works": [
+				{
+					"name": "q1",
+					"score": 6
+				},
+				{
+					"name": "q2",
+					"score": 5
+				},
+				{
+					"name": "q3",
+					"score": 9
+				},
+				{
+					"name": "midterm",
+					"score": 96
+				},
+				{
+					"name": "final",
+					"score": 78
+				}
+			]
+		}
+	]
 }
