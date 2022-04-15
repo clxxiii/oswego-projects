@@ -1,4 +1,4 @@
-package assignment04;
+package assignments.assignment04;
 
 import javax.json.*;
 

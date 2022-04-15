@@ -1,4 +1,4 @@
-package assignment04;
+package assignments.assignment04;
 
 /*
     CSC 241 Spring 2022

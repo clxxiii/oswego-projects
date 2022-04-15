@@ -1,6 +1,6 @@
-package assignment04;
+package assignments.assignment04;
 
-import assignment04.Student;
+import assignments.assignment04.Student;
 import utility.Benchmark;
 
 public class LinearSearch {
