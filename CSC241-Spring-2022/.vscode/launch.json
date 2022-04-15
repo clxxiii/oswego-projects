@@ -1,0 +1,15 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Launch GradeManager",
+			"request": "launch",
+			"mainClass": "assignment05.GradeManager",
+			"projectName": "CSC241-Spring-2022_cb997854"
+		}
+	]
+}
