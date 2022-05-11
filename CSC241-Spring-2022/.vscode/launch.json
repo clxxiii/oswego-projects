@@ -8,8 +8,8 @@
 			"type": "java",
 			"name": "Launch GradeManager",
 			"request": "launch",
-			"mainClass": "assignment05.GradeManager",
-			"projectName": "CSC241-Spring-2022_cb997854"
+			"mainClass": "assignment07.GradeManager",
+			"projectName": "CSC241-Spring-2022_eb7afa31"
 		}
 	]
 }
