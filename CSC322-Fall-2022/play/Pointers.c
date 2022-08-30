@@ -1,9 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
     int slices = 20;
     int *p = &slices;
+
+    printf("Slices Address: %p\n", &slices);
 
     printf("Slices: %d\n", slices);
     printf("Slices (through pointer): %d\n", *p);
@@ -25,8 +28,6 @@ int main()
 
     printf("Slices: %d\n", slices);
     printf("Slices (through pointer): %d\n", *p);
-
-    printf("%f", p);
 
     return 0;
 }
