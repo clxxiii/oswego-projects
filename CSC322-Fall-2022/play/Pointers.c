@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main()
 {
@@ -22,7 +21,11 @@ int main()
     printf("Slices (through pointer): %d\n", *p);
 
     slices++;
-    // This would not work
+    // If we want to increase using the pointer,
+    // We cannot use *p++
+    // The addition operator happens first,
+    // so this would increase the pointer, then try
+    // to dereference.
     // *p++; --> *(p++)
     (*p)++;
 
