@@ -26,7 +26,7 @@ int main()
     // The addition operator happens first,
     // so this would increase the pointer, then try
     // to dereference.
-    // *p++; --> *(p++)
+    // *p++; --> (*p)++
     (*p)++;
 
     printf("Slices: %d\n", slices);
