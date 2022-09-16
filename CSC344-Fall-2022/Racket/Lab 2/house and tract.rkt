@@ -1,0 +1,41 @@
+#lang racket
+( require 2htdp/image)
+( define (random-color)
+   ( color (random 256) (random 256) (random 256) )
+   )
+
+( define (house-floor width height color)
+   ( rectangle width height 'solid color )
+   )
+
+( define (house-roof width )
+   ( triangle width 'solid 'gray )
+   )
+
+( define (house width height color1 color2 color3 )
+   ( above
+     ( house-roof width )
+     ( house-floor width height color1 )
+     ( house-floor width height color2 )
+     ( house-floor width height color3 )
+     )
+   )
+
+(define (tract width height)
+  ( define color1 (random-color) )
+  ( define color2 (random-color) )
+  ( define color3 (random-color) )
+  ( beside
+    ( house width height color1 color2 color3 )
+    ( square 10 'solid 'white)
+    ( house width height color1 color3 color2 )
+    ( square 10 'solid 'white)
+    ( house width height color2 color1 color3 )
+    ( square 10 'solid 'white)
+    ( house width height color2 color3 color1 )
+    ( square 10 'solid 'white)
+    ( house width height color3 color1 color2 )
+    ( square 10 'solid 'white)
+    ( house width height color3 color2 color1 )
+    )
+  )

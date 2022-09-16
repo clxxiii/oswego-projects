@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Website Specification",
+        "filename": "PL_WebWorkSite_Assignment.pdf",
+        "type": "spec"
+    },
+    {
+        "name": "Racket Assignment 1",
+        "desc": "First Racket Interactions",
+        "date": "2022-08-29T18:00:00Z",
+        "filename": "Racket Programming Lab 1.pdf",
+        "type": "assignment"
+    },
+    {
+        "name": "Racket Assignment 1 Specification",
+        "filename": "PL_Racket_Assignment_1.pdf",
+        "type": "spec"
+    }
+]
