@@ -1,0 +1,6 @@
+break main
+break explode_bomb
+break phase_2
+break *phase_2+48
+break *phase_2+70
+break *phase_2+75
