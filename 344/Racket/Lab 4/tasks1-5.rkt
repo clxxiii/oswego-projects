@@ -43,3 +43,18 @@
       )
    )
 
+( define ( los->s li )
+   ( cond
+      ( ( = ( length li ) 0 ) "" )
+      ( else
+        ( cond
+           ( ( = ( length li ) 1 )
+             ( string-append ( car li ) "" ( los->s ( cdr li ) ) )
+             )
+           ( else
+             ( string-append ( car li ) " " ( los->s ( cdr li ) ) )
+           )
+           )
+        )
+      )
+   )
