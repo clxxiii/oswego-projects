@@ -6,6 +6,9 @@
 ( define ( dot )
    ( circle ( + 10 ( random 41 ) ) "solid" ( random-color ) )
    )
+( define ( diamond )
+   ( rotate 45 ( square  ( random 201 ) 'solid ( random-color ) ))
+   )
 
 ( define ( big-dot )
    ( circle ( + 10 ( random 201 ) ) "solid" ( random-color ) )
@@ -29,4 +32,9 @@
         ( cons ( func ) ( generate-list ( - n 1 ) func ) )
         )
       )
+   )
+
+( define ( diamond-design n )
+   ( define diamond-list ( generate-list n diamond ) )
+   ( foldr overlay empty-image ( sort-dots diamond-list ) )
    )
