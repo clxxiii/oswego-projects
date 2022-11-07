@@ -4,10 +4,10 @@
 			"type": "cppdbg",
 			"name": "C Launch",
 			"request": "launch",
-			"program": "${workspaceFolder}/cachelab",
+			"program": "${workspaceFolder}/322/labs/cachelab/cachelab",
 			"args": [
 				"-m",
-				"8",
+				"64",
 				"-s",
 				"4",
 				"-e",
