@@ -18,9 +18,8 @@
 //  - rumTime: total running time in cycle
 //
 
-void printResult(int hits, int misses, int missRate, int runTime);
 
-void hexToBin(char *bin, char *hex, int m)
+void hexToBin(char *bin, char *hex, int *m)
 {
     while (*hex != '\n')
     {
@@ -79,25 +78,40 @@ void hexToBin(char *bin, char *hex, int m)
         hex++;
     }
 
-    if (strlen(bin) != m)
+    if (strlen(bin) != *m)
     {
-        // if (strlen(bin) > m)
-        // {
-        //     char *temp;
-        //     strncpy(temp, bin, m);
-        //     strncpy(bin, temp, strlen(temp));
-        // }
 
-        if (strlen(bin) < m)
+        if (strlen(bin) < *m)
         {
-            char *temp = malloc(sizeof(char) * m);
-            *temp = '0';
-            printf("Temp: %s\n", temp);
+            char *temp = malloc(sizeof(char) * *m);
+            *temp = '\0';
+            int stringLength = *m;
+            int currentLength = strlen(bin);
+            int zeroesToAppend = stringLength - currentLength;
+            for (int i = 0; i < zeroesToAppend; i++)
+            {
+                *(temp + i) = '0';
+            }
+            *(temp + zeroesToAppend) = '\0';
+
             strncat(temp, bin, 100);
-            printf("Temp: %s\n", temp);
+            strncpy(bin, temp, strlen(temp));
             free(temp);
         }
     }
+}
+
+int binToInt(char *bin)
+{
+    int result = 0;
+    for (int i = strlen(bin) - 1; i >= 0; i--)
+    {
+        if (*(bin + i) == '1')
+        {
+            result += pow(2, (strlen(bin) - 1) - i);
+        }
+    }
+    return result;
 }
 
 #endif /* cachelab_h */
