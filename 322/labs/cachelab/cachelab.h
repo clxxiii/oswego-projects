@@ -127,4 +127,44 @@ struct Node *getLast(struct Node *n)
     }
     return getLast(n->pointingTo);
 }
+struct Node *findValue(struct Node *n, int value)
+{
+    if (n == NULL)
+    {
+        return NULL;
+    }
+
+    if (n->value == value)
+    {
+        return n;
+    }
+
+    return findValue(n->pointingTo, value);
+}
+struct Node *findPointer(struct Node *n, struct Node *pointingTo)
+{
+    if (n == NULL)
+    {
+        return NULL;
+    }
+
+    if (n->pointingTo == pointingTo)
+    {
+        return n;
+    }
+
+    return findPointer(n->pointingTo, pointingTo);
+}
+
+void printList(struct Node *head)
+{
+    struct Node printLoop = *head;
+
+    printf("%d,", printLoop.value);
+    while (printLoop.pointingTo)
+    {
+        printLoop = *printLoop.pointingTo;
+        printf("%d,", printLoop.value);
+    }
+}
 #endif /* cachelab_h */

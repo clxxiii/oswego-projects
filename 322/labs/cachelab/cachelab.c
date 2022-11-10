@@ -30,10 +30,14 @@ void printResult(int *hits, int *misses)
 
 int main(int argc, char **argv)
 {
-    int hits, misses = 0;
+    int *hits = malloc(sizeof(int));
+    int *misses = malloc(sizeof(int));
+    *hits = 0;
+    *misses = 0;
     // Get options from command
     int opt, m, s, e, b, verbose;
     char *i, *r;
+    verbose = 0;
 
     int mCheck, sCheck, eCheck, bCheck, iCheck, rCheck = 0;
     while (-1 != (opt = getopt(argc, argv, "m:s:e:b:i:r:v")))
@@ -79,10 +83,13 @@ int main(int argc, char **argv)
     }
     if (
         !(strcmp(r, "lru") == 0 ||
-          strcmp(r, "fifo") == 0 ||
-          strcmp(r, "optimal") == 0))
+          strcmp(r, "fifo") == 0))
     {
         printf("Invalid Algorithm\n");
+        if (strcmp(r, "optimal") == 0)
+        {
+            printf("Optimal Algorithm is not implemented.\n");
+        }
         exit(1);
     }
 
@@ -149,6 +156,9 @@ int main(int argc, char **argv)
             {
                 printf("%d; ", *(set + i));
             }
+            printf("\n");
+            printf("│ Set History: ");
+            printList(setHistory);
             printf("\n");
         }
         int cellNum = 0;
@@ -294,7 +304,7 @@ int main(int argc, char **argv)
             {
                 printf("│└\n");
             }
-            misses++;
+            (*misses)++;
         }
 
         else
@@ -305,10 +315,43 @@ int main(int argc, char **argv)
             }
             else
             {
-                printf("│ " CONSOLE_GREEN "Hit!\n" CONSOLE_RESET);
+                printf("│┌ " CONSOLE_GREEN "Hit!\n" CONSOLE_RESET);
+            }
+            // Look for hit in history and move it to the end of the list.
+            struct Node *valueNode = findValue(setHistory, tagInt);
+            struct Node *lastNode = getLast(setHistory);
+            if (verbose)
+            {
+                if (valueNode == lastNode)
+                {
+                    printf("││ Node (%d) is at the end of the linked list.\n", valueNode->value);
+                }
+                else
+                {
+                    printf("││ Node (%d, %p) in the list but not at the end. Moving to the end of the list.\n", valueNode->value, valueNode->pointingTo);
+
+                    // Find the node that points to our value, or null.
+                    struct Node *beforeNode = findPointer(setHistory, valueNode);
+                    printf("││ Node before value: %p\n", beforeNode);
+                    if (beforeNode == NULL)
+                    {
+                        // If the value node is the head
+                        printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
+                        lastNode->pointingTo = valueNode;
+                        struct Node *newHeadPointer = valueNode->pointingTo;
+                        valueNode->pointingTo = NULL;
+                        printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
+                        printf("││ New Head Pointer: %p (%d, %p)\n", newHeadPointer, newHeadPointer->value, newHeadPointer->pointingTo);
+                        *(history + setInt - 1) = *newHeadPointer;
+                    }
+                }
             }
 
-            hits++;
+            (*hits)++;
+            if (verbose)
+            {
+                printf("│└\n");
+            }
         }
         if (verbose)
         {
@@ -316,8 +359,10 @@ int main(int argc, char **argv)
         }
         *binary = '\0';
     }
-    printResult(&hits, &misses);
+    printResult(hits, misses);
     // Free allocated memory
+    free(hits);
+    free(misses);
     free(noNewLineAddress);
     free(history);
     free(cache);
