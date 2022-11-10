@@ -50,13 +50,25 @@ int main(int argc, char **argv)
             r = optarg;
             break;
         default:
-            printf("wrong argument dummy\n");
-            break;
+            exit(1);
         }
     }
 
-    int **cache = malloc(sizeof(int *) * pow(2, s));
-    printf("sizeof(int*) * 2^s = %f\n", sizeof(int) * pow(2, s));
+    // Setup Cache
+    int **cache = (int **)malloc(sizeof(int *) * pow(2, s));
+    for (int i = 0; i < pow(2, s); i++)
+    {
+        *(cache + i) = malloc(sizeof(int) * pow(2, e));
+        int *set = *(cache + i);
+
+        for (int i = 0; i < pow(2, e); i++)
+        {
+            // Fill cache with -1
+            *(set + i) = -1;
+        }
+    }
+    printf("Cache Pointer: %p\n", cache);
+    printf("sizeof(int*) * 2^s = %f\n", sizeof(int *) * pow(2, s));
     printf("Size of cache: %ld\n", sizeof(cache));
 
     FILE *aFile = fopen(i, "r");
@@ -66,6 +78,7 @@ int main(int argc, char **argv)
     {
         printf("%s", addressHex);
         hexToBin(binary, addressHex, &m);
+        printf("Address: %s\n", binary);
         int blockNumber = b;
         while (blockNumber > 0)
         {
@@ -73,7 +86,6 @@ int main(int argc, char **argv)
             *(binary + strLen - 1) = '\0';
             blockNumber--;
         }
-        printf("Blocked Address: %s\n", binary);
         char *setIndex = binary;
         int bitsToRemove = abs(s - (m - b));
         while (bitsToRemove > 0)
@@ -89,18 +101,38 @@ int main(int argc, char **argv)
         int tagInt = binToInt(tag);
         printf("Set Index: %s (%d); Tag: %s (%d)\n", setIndex, setInt, tag, tagInt);
 
-        int *set = realloc(set, sizeof(int) * pow(2, e));
-        set = *(cache + (setInt - 1));
+        int *set = *(cache + (setInt - 1));
+        printf("Set: %p\n", set);
         int cellNum = 0;
         int hit = 0;
-        while (cellNum <= e)
+        while (cellNum < pow(2, e))
         {
-            int tagCheck = *(set + e);
-            // if (tagCheck == tagInt)
-            // {
-            //     hit = 1;
-            // }
+            int tagCheck = *(set + cellNum);
+            if (tagCheck == tagInt)
+            {
+                hit = 1;
+            }
             cellNum++;
+        }
+        if (!hit)
+        {
+            printf("Miss!\n");
+            for (int cell = 0; cell < pow(2, e); cell++)
+            {
+                int cellContents = *(set + cell);
+                if (cellContents == -1)
+                {
+                    printf("Found empty space in set %d, writing tag...", setInt);
+                    *(set + cell) = tagInt;
+                }
+            }
+            printf("\n");
+            misses++;
+        }
+        else
+        {
+            printf("Hit!\n");
+            hits++;
         }
 
         *binary = '\0';
