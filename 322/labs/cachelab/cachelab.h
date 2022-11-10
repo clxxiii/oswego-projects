@@ -18,6 +18,11 @@
 //  - rumTime: total running time in cycle
 //
 
+struct Node
+{
+    int value;
+    struct Node *pointingTo;
+};
 
 void hexToBin(char *bin, char *hex, int *m)
 {
@@ -114,4 +119,12 @@ int binToInt(char *bin)
     return result;
 }
 
+struct Node *getLast(struct Node *n)
+{
+    if (!n->pointingTo)
+    {
+        return n;
+    }
+    return getLast(n->pointingTo);
+}
 #endif /* cachelab_h */
