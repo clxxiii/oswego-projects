@@ -221,6 +221,10 @@ int main(int argc, char **argv)
                         {
                             printf(" (%d, %p)\n", setHistory->pointingTo->value, setHistory->pointingTo->pointingTo);
                         }
+                        else
+                        {
+                            printf("\n");
+                        }
                     }
                     if (!setHistory->pointingTo)
                     {
@@ -229,12 +233,12 @@ int main(int argc, char **argv)
                     else
                     {
                         struct Node *lastNode = getLast(setHistory);
-                        printf("Moving Head!");
-                        struct Node nextNode;
-                        nextNode.value = tagInt;
-                        lastNode->pointingTo = &nextNode;
+                        struct Node *nextNode = malloc(sizeof(struct Node));
+                        nextNode->value = tagInt;
+                        lastNode->pointingTo = nextNode;
 
-                        setHistory = setHistory->pointingTo;
+                        *(history + setInt - 1) = *setHistory->pointingTo;
+                        printf("││ Next Set Head Pointer Value: %d\n", setHistory->value);
                     }
                 }
             }
