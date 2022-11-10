@@ -22,12 +22,12 @@
 // print result of cache simulation showing hit number, miss number, miss rate, and total running time
 void printResult(int *hits, int *misses)
 {
-    int missRate = ((float)*misses / (float)(*hits + *misses) * 100);
-    int runTime = *misses * MISS_PENALTY + *hits * HIT_TIME;
-    printf("[" CONSOLE_BLUE "result" CONSOLE_RESET "] hits: " CONSOLE_GREEN "%d" CONSOLE_RESET " misses: " CONSOLE_RED "%d" CONSOLE_RESET " miss rate: " CONSOLE_YELLOW "%d%%" CONSOLE_RESET " total running time: " CONSOLE_MAGENTA "%d" CONSOLE_RESET " cycle\n", *hits, *misses, missRate, runTime);
+    float missRate = (float)*misses / (float)(*hits + *misses);
+    float averageAccessTime = HIT_TIME + (missRate * MISS_PENALTY);
+    int runTime = (*hits + *misses) * averageAccessTime;
+    printf("[" CONSOLE_BLUE "result" CONSOLE_RESET "] hits: " CONSOLE_GREEN "%d" CONSOLE_RESET " misses: " CONSOLE_RED "%d" CONSOLE_RESET " miss rate: " CONSOLE_YELLOW "%d%%" CONSOLE_RESET " total running time: " CONSOLE_MAGENTA "%d" CONSOLE_RESET " cycle\n", *hits, *misses, (int)(missRate * 100), runTime);
 }
 
-// main function should be coded here
 int main(int argc, char **argv)
 {
     int hits, misses = 0;
@@ -75,6 +75,14 @@ int main(int argc, char **argv)
     if ((mCheck & sCheck & eCheck & bCheck & iCheck & rCheck) != 1)
     {
         printf("Missing Arguments.");
+        exit(1);
+    }
+    if (
+        !(strcmp(r, "lru") == 0 ||
+          strcmp(r, "fifo") == 0 ||
+          strcmp(r, "optimal") == 0))
+    {
+        printf("Invalid Algorithm\n");
         exit(1);
     }
 
@@ -184,9 +192,13 @@ int main(int argc, char **argv)
                     else
                     {
                         struct Node *lastNode = getLast(setHistory);
-                        struct Node nextNode;
-                        nextNode.value = tagInt;
-                        lastNode->pointingTo = &nextNode;
+                        struct Node *nextNode = malloc(sizeof(struct Node));
+                        nextNode->value = tagInt;
+                        lastNode->pointingTo = nextNode;
+
+                        *(history + setInt - 1) = *setHistory;
+                        nextNode = NULL;
+                        free(nextNode);
                     }
 
                     replaced = 1;
@@ -195,8 +207,7 @@ int main(int argc, char **argv)
 
             if (!replaced)
             {
-
-                if (r = "lru")
+                if (strcmp(r, "lru") == 0)
                 {
                     int valueToReplace = setHistory->value;
                     if (verbose)
@@ -238,7 +249,44 @@ int main(int argc, char **argv)
                         lastNode->pointingTo = nextNode;
 
                         *(history + setInt - 1) = *setHistory->pointingTo;
-                        printf("││ Next Set Head Pointer Value: %d\n", setHistory->value);
+                        if (verbose)
+                        {
+                            printf("││ Next Set Head Pointer Value: %d\n", setHistory->value);
+                        }
+
+                        nextNode = NULL;
+                        free(nextNode);
+                    }
+                }
+                if (strcmp(r, "fifo") == 0)
+                {
+                    int valueToReplace = getLast(setHistory)->value;
+                    if (verbose)
+                    {
+                        printf("││ Using fifo to find a new spot (Replacing %d)\n", valueToReplace);
+                    }
+
+                    for (int i = 0; i < pow(2, e); i++)
+                    {
+                        if (*(set + i) == valueToReplace)
+                        {
+                            *(set + i) = tagInt;
+                        }
+                    }
+
+                    if (!setHistory->pointingTo)
+                    {
+                        setHistory->value = tagInt;
+                    }
+                    else
+                    {
+                        struct Node *last = getLast((history + setInt - 1));
+                        if (verbose)
+                        {
+                            printf("││ Last node: (%d, %p)\n", last->value, last->pointingTo);
+                        }
+
+                        last->value = tagInt;
                     }
                 }
             }
