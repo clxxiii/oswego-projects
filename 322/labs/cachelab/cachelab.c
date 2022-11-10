@@ -315,43 +315,10 @@ int main(int argc, char **argv)
             }
             else
             {
-                printf("│┌ " CONSOLE_GREEN "Hit!\n" CONSOLE_RESET);
-            }
-            // Look for hit in history and move it to the end of the list.
-            struct Node *valueNode = findValue(setHistory, tagInt);
-            struct Node *lastNode = getLast(setHistory);
-            if (verbose)
-            {
-                if (valueNode == lastNode)
-                {
-                    printf("││ Node (%d) is at the end of the linked list.\n", valueNode->value);
-                }
-                else
-                {
-                    printf("││ Node (%d, %p) in the list but not at the end. Moving to the end of the list.\n", valueNode->value, valueNode->pointingTo);
-
-                    // Find the node that points to our value, or null.
-                    struct Node *beforeNode = findPointer(setHistory, valueNode);
-                    printf("││ Node before value: %p\n", beforeNode);
-                    if (beforeNode == NULL)
-                    {
-                        // If the value node is the head
-                        printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
-                        lastNode->pointingTo = valueNode;
-                        struct Node *newHeadPointer = valueNode->pointingTo;
-                        valueNode->pointingTo = NULL;
-                        printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
-                        printf("││ New Head Pointer: %p (%d, %p)\n", newHeadPointer, newHeadPointer->value, newHeadPointer->pointingTo);
-                        *(history + setInt - 1) = *newHeadPointer;
-                    }
-                }
+                printf("│ " CONSOLE_GREEN "Hit!\n" CONSOLE_RESET);
             }
 
             (*hits)++;
-            if (verbose)
-            {
-                printf("│└\n");
-            }
         }
         if (verbose)
         {
