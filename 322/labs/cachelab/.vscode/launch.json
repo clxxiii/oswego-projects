@@ -1,10 +1,10 @@
 {
 	"configurations": [
 		{
-			"type": "cppdbg",
-			"name": "C Launch",
+			"name": "Cachelab",
 			"request": "launch",
-			"program": "${workspaceFolder}/cachelab",
+			"type": "lldb",
+			"program": "${workspaceFolder}/build/cachelab",
 			"args": [
 				"-m",
 				"12",
@@ -17,7 +17,8 @@
 				"-i",
 				"address01",
 				"-r",
-				"lru"
+				"lru",
+				"-v"
 			],
 			"cwd": "${workspaceFolder}"
 		}
