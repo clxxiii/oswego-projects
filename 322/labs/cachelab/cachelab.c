@@ -336,12 +336,12 @@ int main(int argc, char **argv)
                     if (beforeNode == NULL)
                     {
                         // If the value node is the head
-                        printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
+                        // printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
                         lastNode->pointingTo = valueNode;
                         struct Node *newHeadPointer = valueNode->pointingTo;
                         valueNode->pointingTo = NULL;
-                        printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
-                        printf("││ New Head Pointer: %p (%d, %p)\n", newHeadPointer, newHeadPointer->value, newHeadPointer->pointingTo);
+                        // printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
+                        // printf("││ New Head Pointer: %p (%d, %p)\n", newHeadPointer, newHeadPointer->value, newHeadPointer->pointingTo);
                         *(history + setInt - 1) = *newHeadPointer;
                     }
                 }
