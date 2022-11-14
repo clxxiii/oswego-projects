@@ -354,10 +354,6 @@ int main(int argc, char **argv)
             }
 
             (*hits)++;
-            if (verbose)
-            {
-                printf("│└\n");
-            }
         }
         if (verbose)
         {
