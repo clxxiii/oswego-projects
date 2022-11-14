@@ -89,6 +89,7 @@ type(N, T) :- pokemon(name(N),T,_,_).
 
 % Write all pokemon with given type
 dump_kind(T) :- pokemon(N,T,HP,ATK), write(pokemon(N,T,HP,ATK)), nl, fail.
+dump_kind(_) :- true.
 
 % Write all cen pokemon
 display_cen :- pokemon(name(N),_,_,_), cen(N), write(N), nl, fail.
@@ -103,4 +104,6 @@ families :- cen(C), family(C), nl, fail.
 families :- true.
 
 % This doesn't work and I don't know why
-lineage(N) :- pokemon(name(N),_,_,_).
+lineage(N) :- pokemon(name(N),T,H,A), write(pokemon(name(N),T,H,A)), evolves(N,E1), pokemon(name(E1),E1T,E1H,E1A), nl, write(pokemon(name(E1),E1T,E1H,E1A)), evolves(E1, E2), pokemon(name(E2),E2T,E2H,E2A), nl, write(pokemon(name(E2),E2T,E2H,E2A)).
+lineage(_) :- true.
+
