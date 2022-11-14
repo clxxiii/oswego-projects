@@ -1,125 +1,125 @@
 /* Global Styling */
 
 @font-face {
-  font-family: Montserrat-Bold;
-  src: url("./fonts/Montserrat-Bold.ttf");
+    font-family: Montserrat-Bold;
+    src: url("./fonts/Montserrat-Bold.ttf");
 }
 
 @font-face {
-  font-family: Montserrat-Medium;
-  src: url("./fonts/Montserrat-Medium.ttf");
+    font-family: Montserrat-Medium;
+    src: url("./fonts/Montserrat-Medium.ttf");
 }
 
 @font-face {
-  font-family: Montserrat-Regular;
-  src: url("./fonts/Montserrat-Regular.ttf");
+    font-family: Montserrat-Regular;
+    src: url("./fonts/Montserrat-Regular.ttf");
 }
 
 @font-face {
-  font-family: Montserrat-SemiBold;
-  src: url("./fonts/Montserrat-SemiBold.ttf");
+    font-family: Montserrat-SemiBold;
+    src: url("./fonts/Montserrat-SemiBold.ttf");
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #14121a;
-  color: white;
-  font-family: 'Montserrat-Regular';
+    margin: 0;
+    padding: 0;
+    background-color: #14121a;
+    color: white;
+    font-family: 'Montserrat-Regular';
 
 }
 
 a {
-  color: #7acaf0
+    color: #7acaf0
 }
 
 /* Navigation Styling */
 
 header {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  background-color: #211e2b;
-  width: 100vw;
-  height: 75px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: #211e2b;
+    width: 100vw;
+    height: 75px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 header h2 {
-  position: absolute;
-  top: 12px;
-  margin: 0;
-  padding: 10px;
+    position: absolute;
+    top: 12px;
+    margin: 0;
+    padding: 10px;
 }
 
 nav ul {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: calc(100% - 75px);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: calc(100% - 75px);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 nav li {
-  list-style: none;
-  vertical-align: middle;
+    list-style: none;
+    vertical-align: middle;
 }
 
 nav a {
-  color: white;
-  font-size: 1.3em;
-  text-decoration: none;
-  position: relative;
-  text-transform: uppercase;
-  font-family: 'Montserrat-SemiBold'
+    color: white;
+    font-size: 1.3em;
+    text-decoration: none;
+    position: relative;
+    text-transform: uppercase;
+    font-family: 'Montserrat-SemiBold'
 }
 
 nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0%;
-  height: 2px;
-  background-color: white;
-  transition: 0.4s ease-in-out
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background-color: white;
+    transition: 0.4s ease-in-out
 }
 
 nav a:hover::after {
-  left: 0;
-  width: 100%;
+    left: 0;
+    width: 100%;
 }
 
 /* Basic Page Styling */
 
 section {
-  /* height: calc(100vh - 75px); */
-  padding-top: 75px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    /* height: calc(100vh - 75px); */
+    padding-top: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 section#resources {
-  padding-bottom: 75px;
+    padding-bottom: 75px;
 }
 
 h1 {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 h4 {
-  margin: 5px;
+    margin: 5px;
 }
 
 /* ----------------------- */
@@ -127,58 +127,74 @@ h4 {
 /* ----------------------- */
 
 #article-list {
-  display: flex;
-  width: 50%;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.group {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.25);
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.group h1 {
+    margin: 0;
+    font-size: 1.5em;
 }
 
 .assignment,
 .spec {
-  position: relative;
-  padding: 5px;
-  width: 100%;
-  background: #211e2b;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
-  color: white;
-  text-decoration: none;
-  margin: 5px;
-  height: 75px;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: 0.1s ease-in-out
+    position: relative;
+    padding: 5px;
+    background: #211e2b;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+    color: white;
+    text-decoration: none;
+    margin: 5px;
+    height: 75px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: 0.1s ease-in-out
 }
 
 .spec {
-  width: 90%;
-  height: 50px;
-  background: #18151f;
+    width: 90%;
+    height: 50px;
+    background: #18151f;
 }
 
 .assignment:hover,
 .spec:hover {
 
-  transform: translate(-5px, -5px);
-  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.5);
+    transform: translate(-5px, -5px);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.5);
 
 }
 
 .assignment .title {
-  font-family: 'Montserrat-SemiBold';
+    font-family: 'Montserrat-SemiBold';
 }
 
-.assignment .desc {
-  font-size: 0.8em;
-  color: #AAAAAA;
+.desc {
+    font-size: 1em;
+    margin-bottom: 30px;
+    color: #AAAAAA;
 }
 
 .assignment .date {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 0.6em;
-  color: #999999
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.6em;
+    color: #999999
 }
 
 /* -------------- */
@@ -188,86 +204,86 @@ h4 {
 /* Programming Language Cards */
 
 .languages {
-  display: flex;
-  width: 75%;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+    display: flex;
+    width: 75%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .language-card {
-  background-color: #211e2b;
-  position: relative;
-  width: 200px;
-  height: 100px;
-  padding: 10px;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
-  transition: 0.1s ease-in-out
+    background-color: #211e2b;
+    position: relative;
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+    transition: 0.1s ease-in-out
 }
 
 .language-card:hover {
-  transform: translate(-5px, -5px);
-  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.5);
+    transform: translate(-5px, -5px);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .language-card img {
-  filter: invert(1);
-  position: absolute;
-  top: 10px;
-  left: 10px;
+    filter: invert(1);
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 .language-card h1 {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .language-card h1,
 .language-card .links {
-  width: 100%;
-  height: 50%;
-  margin: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .language-card a {
-  height: 100%;
-  display: flex;
-  align-items: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 /* Other Links */
 
 .other-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 50%;
-  margin-bottom: 25px;
-  gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 50%;
+    margin-bottom: 25px;
+    gap: 10px;
 }
 
 .other-links a {
-  background-color: #211e2b;
-  width: 45%;
-  text-align: center;
-  padding: 15px 5px;
-  text-decoration: none;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
-  transition: 0.1s ease-in-out;
+    background-color: #211e2b;
+    width: 45%;
+    text-align: center;
+    padding: 15px 5px;
+    text-decoration: none;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+    transition: 0.1s ease-in-out;
 }
 
 .other-links a:hover {
-  transform: translate(-5px, -5px);
-  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.5);
+    transform: translate(-5px, -5px);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 @media only screen and (max-width: 600px) {
 
-  #article-list,
-  .other-links {
-    width: 90%;
-  }
+    #article-list,
+    .other-links {
+        width: 90%;
+    }
 }

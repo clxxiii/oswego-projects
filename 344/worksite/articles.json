@@ -1,19 +1,111 @@
 [
     {
-        "name": "Website Specification",
-        "filename": "PL_WebWorkSite_Assignment.pdf",
-        "type": "spec"
-    },
-    {
         "name": "Racket Assignment 1",
         "desc": "First Racket Interactions",
         "date": "2022-08-29T18:00:00Z",
-        "filename": "Racket Programming Lab 1.pdf",
-        "type": "assignment"
+        "articles": [
+            {
+                "name": "Solution",
+                "path": "./articles/Racket Programming Lab 1.pdf",
+                "type": "assignment"
+            },
+            {
+                "name": "Specification",
+                "path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Racket/archive/PL_Racket_Assignment_1.pdf",
+                "type": "spec"
+            }
+        ]
     },
     {
-        "name": "Racket Assignment 1 Specification",
-        "filename": "PL_Racket_Assignment_1.pdf",
-        "type": "spec"
+        "name": "Website",
+        "articles": [
+            {
+                "name": "Website Specification",
+                "path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Other/archive/PL_WebWorkSite_Assignment.pdf",
+                "type": "spec"
+            }
+        ]
+    },
+    {
+        "name": "Racket Assignment 2",
+        "desc": "Recursion & Image Processing",
+        "date": "2022-09-16T03:23:00Z",
+        "articles": [
+            {
+                "name": "Solution",
+                "path": "./articles/Racket Programming Lab 2.pdf",
+                "type": "assignment"
+            },
+            {
+                "name": "Specification",
+                "path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Racket/archive/PL_Racket_Assignment_2.pdf",
+                "type": "spec"
+            }
+        ]
+    },
+    {
+        "name": "BNF Assignment",
+        "desc": "Getting to know BNF",
+        "articles": [
+            {
+                "name": "Solution",
+                "path": "./articles/BNF Assignment.pdf",
+                "type": "assignment"
+            },
+            {
+                "name": "Specification",
+                "type": "spec",
+                "path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Other/archive/PL_BNF_Assignment.pdf"
+            }
+        ]
+    },
+    {
+    	"name": "Racket Assignment 3",
+	"desc": "Lambdas and List Processing",
+	"articles": [
+		{
+			"name": "Solution",
+			"path": "./articles/Racket Assignment 3.pdf",
+			"type": "assignment"
+		},
+		{
+			"name": "Specification",
+			"type": "spec",
+			"path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Racket/archive/PL_Racket_Assignment_3.pdf"
+		}
+	]
+    },
+    {
+    	"name": "Racket Assignment 4",
+	"desc": "Recursive List Processing & Higher Order Functions",
+	"articles": [
+		{
+			"name": "Solution",
+			"path": "./articles/Racket Assignment 4.pdf",
+			"type": "assignment"
+		},
+		{
+			"name": "Specification",
+			"type": "spec",
+			"path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Racket/archive/PL_Racket_Assignment_4.pdf"
+		}
+	]
+    },
+	{
+    	"name": "Prolog Assignment",
+		"desc": "Prolog Relations & List Processing",
+		"articles": [
+		{
+			"name": "Solution",
+			"path": "./articles/Prolog Assignment.pdf",
+			"type": "assignment"
+		},
+		{
+			"name": "Specification",
+			"type": "spec",
+			"path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Prolog/PL_Prolog_Assignment_1.pdf"
+		}
+		]
     }
+
 ]
