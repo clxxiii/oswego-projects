@@ -66,3 +66,41 @@ pokemon(name(blastoise), water, hp(140), attack(hydro-pump, 60)).
 
 pokemon(name(staryu), water, hp(40), attack(slap, 20)).
 pokemon(name(starmie), water, hp(60), attack(star-freeze, 20)).
+
+% -----------------------------------------------------------------------
+% --- Part 2
+
+% Display the names of every pokemon
+display_names :- pokemon(name(N),_,_,_), write(N), nl, fail.
+display_names :- true.
+
+% Display the name of every attack
+display_attacks :- pokemon(_,_,_,attack(ATK,_)), write(ATK), nl, fail.
+display_attacks :- true.
+
+% Returns true if attack power is larger than 55
+powerful(N) :- pokemon(name(N),_,_,attack(_,PWR)), PWR > 55.
+
+% Returns true if HP is larget than 100
+tough(N) :- pokemon(name(N),_,hp(HP),_), HP > 100.
+
+% Get the type of a pokemon by name
+type(N, T) :- pokemon(name(N),T,_,_).
+
+% Write all pokemon with given type
+dump_kind(T) :- pokemon(N,T,HP,ATK), write(pokemon(N,T,HP,ATK)), nl, fail.
+
+% Write all cen pokemon
+display_cen :- pokemon(name(N),_,_,_), cen(N), write(N), nl, fail.
+display_cen :- true.
+
+% Display family of pokemon from base pokemon.
+family(CEN) :- pokemon(name(CEN),_,_,_), cen(CEN), write(CEN), write(" "), evolves(CEN, EV1), write(EV1), write(" "), evolves(EV1, EV2), write(EV2).
+family(CEN) :- cen(CEN).
+
+% Display all families
+families :- cen(C), family(C), nl, fail.
+families :- true.
+
+% This doesn't work and I don't know why
+lineage(N) :- pokemon(name(N),_,_,_).

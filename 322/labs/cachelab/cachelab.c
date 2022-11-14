@@ -108,7 +108,6 @@ int main(int argc, char **argv)
             *(set + i) = -1;
         }
     }
-
     FILE *aFile = fopen(i, "r");
     char *addressHex = malloc(sizeof(char) * 5);
     char *binary = malloc(sizeof(char) * m);
@@ -177,7 +176,7 @@ int main(int argc, char **argv)
         {
             if (!verbose)
             {
-                printf("%s M\n", noNewLineAddress);
+                printf("%s " CONSOLE_RED "M\n" CONSOLE_RESET, noNewLineAddress);
             }
             else
             {
@@ -311,7 +310,7 @@ int main(int argc, char **argv)
         {
             if (!verbose)
             {
-                printf("%s H\n", noNewLineAddress);
+                printf("%s " CONSOLE_GREEN "H\n" CONSOLE_RESET, noNewLineAddress);
             }
             else
             {
@@ -320,30 +319,37 @@ int main(int argc, char **argv)
             // Look for hit in history and move it to the end of the list.
             struct Node *valueNode = findValue(setHistory, tagInt);
             struct Node *lastNode = getLast(setHistory);
-            if (verbose)
+            if (valueNode == lastNode)
             {
-                if (valueNode == lastNode)
+                if (verbose)
                 {
                     printf("││ Node (%d) is at the end of the linked list.\n", valueNode->value);
                 }
-                else
+            }
+            else
+            {
+                if (verbose)
                 {
                     printf("││ Node (%d, %p) in the list but not at the end. Moving to the end of the list.\n", valueNode->value, valueNode->pointingTo);
+                }
 
-                    // Find the node that points to our value, or null.
-                    struct Node *beforeNode = findPointer(setHistory, valueNode);
+                // Find the node that points to our value, or null.
+                struct Node *beforeNode = findPointer(setHistory, valueNode);
+                if (verbose)
+                {
                     printf("││ Node before value: %p\n", beforeNode);
-                    if (beforeNode == NULL)
-                    {
-                        // If the value node is the head
-                        // printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
-                        lastNode->pointingTo = valueNode;
-                        struct Node *newHeadPointer = valueNode->pointingTo;
-                        valueNode->pointingTo = NULL;
-                        // printf("││ Value Node: %p, (%d, %p); Last Node: %p, (%d, %p)\n", valueNode, valueNode->value, valueNode->pointingTo, lastNode, lastNode->value, lastNode->pointingTo);
-                        // printf("││ New Head Pointer: %p (%d, %p)\n", newHeadPointer, newHeadPointer->value, newHeadPointer->pointingTo);
-                        *(history + setInt - 1) = *newHeadPointer;
-                    }
+                }
+                if (beforeNode == NULL)
+                {
+                    // If the value node is the head
+                    struct Node *valuePlaceHolder = malloc(sizeof(struct Node));
+                    valuePlaceHolder->value = valueNode->value;
+                    valuePlaceHolder->pointingTo = valueNode->pointingTo;
+                    lastNode->pointingTo = valuePlaceHolder;
+                    struct Node *newHeadPointer = malloc(sizeof(struct Node)); // = valueNode->pointingTo;
+                    newHeadPointer = valuePlaceHolder->pointingTo;
+                    valuePlaceHolder->pointingTo = NULL;
+                    *(history + setInt - 1) = *newHeadPointer;
                 }
             }
 
