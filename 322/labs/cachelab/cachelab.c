@@ -3,21 +3,30 @@
 //
 //
 
+// more libraries if needed for your program
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <math.h>
 #include "cachelab.h"
-// more libraries if needed for your program
 
-#define CONSOLE_RED "\x1b[31m"
-#define CONSOLE_GREEN "\x1b[32m"
-#define CONSOLE_YELLOW "\x1b[33m"
-#define CONSOLE_BLUE "\x1b[34m"
-#define CONSOLE_MAGENTA "\x1b[35m"
-#define CONSOLE_CYAN "\x1b[36m"
-#define CONSOLE_RESET "\x1b[0m"
+// If you'd like code colors, then uncomment the following:
+// #define CONSOLE_RED "\x1b[31m"
+// #define CONSOLE_GREEN "\x1b[32m"
+// #define CONSOLE_YELLOW "\x1b[33m"
+// #define CONSOLE_BLUE "\x1b[34m"
+// #define CONSOLE_MAGENTA "\x1b[35m"
+// #define CONSOLE_CYAN "\x1b[36m"
+// #define CONSOLE_RESET "\x1b[0m"
+
+#define CONSOLE_RED ""
+#define CONSOLE_GREEN ""
+#define CONSOLE_YELLOW ""
+#define CONSOLE_BLUE ""
+#define CONSOLE_MAGENTA ""
+#define CONSOLE_CYAN ""
+#define CONSOLE_RESET ""
 
 // print result of cache simulation showing hit number, miss number, miss rate, and total running time
 void printResult(int *hits, int *misses)
@@ -72,14 +81,14 @@ int main(int argc, char **argv)
             verbose = 1;
             break;
         default:
-            exit(1);
+            exit(0);
         }
     }
 
     if ((mCheck & sCheck & eCheck & bCheck & iCheck & rCheck) != 1)
     {
         printf("Missing Arguments.");
-        exit(1);
+        exit(0);
     }
     if (
         !(strcmp(r, "lru") == 0 ||
@@ -90,7 +99,7 @@ int main(int argc, char **argv)
         {
             printf("Optimal Algorithm is not implemented.\n");
         }
-        exit(1);
+        exit(0);
     }
 
     // Setup Cache and History Linked List
@@ -144,9 +153,9 @@ int main(int argc, char **argv)
         tag[m - s - b] = '\0';
         int setInt = binToInt(setIndex);
         int tagInt = binToInt(tag);
-        struct Node *setHistory = (history + setInt - 1);
+        struct Node *setHistory = (history + setInt);
 
-        int *set = *(cache + (setInt - 1));
+        int *set = *(cache + (setInt));
         if (verbose)
         {
             printf("│ Set Index: %s (%d); Tag: %s (%d)\n", setIndex, setInt, tag, tagInt);
@@ -205,7 +214,7 @@ int main(int argc, char **argv)
                         nextNode->value = tagInt;
                         lastNode->pointingTo = nextNode;
 
-                        *(history + setInt - 1) = *setHistory;
+                        *(history + setInt) = *setHistory;
                         nextNode = NULL;
                         free(nextNode);
                     }
@@ -257,7 +266,7 @@ int main(int argc, char **argv)
                         nextNode->value = tagInt;
                         lastNode->pointingTo = nextNode;
 
-                        *(history + setInt - 1) = *setHistory->pointingTo;
+                        *(history + setInt) = *setHistory->pointingTo;
                         if (verbose)
                         {
                             printf("││ Next Set Head Pointer Value: %d\n", setHistory->value);
@@ -289,7 +298,7 @@ int main(int argc, char **argv)
                     }
                     else
                     {
-                        struct Node *last = getLast((history + setInt - 1));
+                        struct Node *last = getLast((history + setInt));
                         if (verbose)
                         {
                             printf("││ Last node: (%d, %p)\n", last->value, last->pointingTo);
@@ -349,7 +358,7 @@ int main(int argc, char **argv)
                     struct Node *newHeadPointer = malloc(sizeof(struct Node)); // = valueNode->pointingTo;
                     newHeadPointer = valuePlaceHolder->pointingTo;
                     valuePlaceHolder->pointingTo = NULL;
-                    *(history + setInt - 1) = *newHeadPointer;
+                    *(history + setInt) = *newHeadPointer;
                 }
             }
 
