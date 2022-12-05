@@ -106,6 +106,21 @@
 			"path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Prolog/PL_Prolog_Assignment_1.pdf"
 		}
 		]
+    },
+	{
+    	"name": "Haskell Assignment",
+		"desc": "Various Computations",
+		"articles": [
+		{
+			"name": "Solution",
+			"path": "./articles/Haskell Assignment.pdf",
+			"type": "assignment"
+		},
+		{
+			"name": "Specification",
+			"type": "spec",
+			"path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Haskell/PL_Haskell.pdf"
+		}
+		]
     }
-
 ]
