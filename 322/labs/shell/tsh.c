@@ -1,6 +1,7 @@
 /* 
  * tsh - A tiny shell program with job control
- * 
+ * Eli Fereira
+ * efereira
  * <Put your name and login ID here>
  */
 #include <stdio.h>
@@ -37,7 +38,7 @@
 
 /* Global variables */
 extern char **environ;      /* defined in libc */
-char prompt[] = "tsh> ";    /* command line prompt (DO NOT CHANGE) */
+char* prompt = "tsh> ";    /* command line prompt (DO NOT CHANGE) */
 int verbose = 0;            /* if true, print additional output */
 int nextjid = 1;            /* next job ID to allocate */
 char sbuf[MAXLINE];         /* for composing sprintf messages */
@@ -100,19 +101,19 @@ int main(int argc, char **argv)
 
     /* Parse the command line */
     while ((c = getopt(argc, argv, "hvp")) != EOF) {
-        switch (c) {
+      switch (c) {
         case 'h':             /* print help message */
-            usage();
-	    break;
+          usage();
+          break;
         case 'v':             /* emit additional diagnostic info */
-            verbose = 1;
-	    break;
+          verbose = 1;
+          break;
         case 'p':             /* don't print a prompt */
-            emit_prompt = 0;  /* handy for automatic testing */
-	    break;
-	default:
-            usage();
-	}
+          emit_prompt = 0;  /* handy for automatic testing */
+          break;
+        default:
+          usage();
+      }
     }
 
     /* Install the signal handlers */
@@ -132,21 +133,21 @@ int main(int argc, char **argv)
     while (1) {
 
 	/* Read command line */
-	if (emit_prompt) {
-	    printf("%s", prompt);
-	    fflush(stdout);
-	}
-	if ((fgets(cmdline, MAXLINE, stdin) == NULL) && ferror(stdin))
-	    app_error("fgets error");
-	if (feof(stdin)) { /* End of file (ctrl-d) */
-	    fflush(stdout);
-	    exit(0);
-	}
+    if (emit_prompt) {
+      printf("%s", prompt);
+      fflush(stdout);
+    }
+    if ((fgets(cmdline, MAXLINE, stdin) == NULL) && ferror(stdin))
+      app_error("fgets error");
+    if (feof(stdin)) { /* End of file (ctrl-d) */
+      fflush(stdout);
+      exit(0);
+    }
 
 	/* Evaluate the command line */
-	eval(cmdline);
-	fflush(stdout);
-	fflush(stdout);
+      eval(cmdline);
+      fflush(stdout);
+      fflush(stdout);
     } 
 
     exit(0); /* control never reaches here */
@@ -165,7 +166,16 @@ int main(int argc, char **argv)
 */
 void eval(char *cmdline) 
 {
+  char* args[MAXARGS];
+  int bg = parseline(cmdline, args);
+  if (builtin_cmd(args)) return;
+
+  if (execv(args[0], args) == -1) {
+    printf("%s: Command not found.\n", args[0]);
     return;
+  }
+
+  return;
 }
 
 /* 
@@ -185,43 +195,45 @@ int parseline(const char *cmdline, char **argv)
 
     strcpy(buf, cmdline);
     buf[strlen(buf)-1] = ' ';  /* replace trailing '\n' with space */
+
     while (*buf && (*buf == ' ')) /* ignore leading spaces */
-	buf++;
+      buf++;
 
     /* Build the argv list */
     argc = 0;
     if (*buf == '\'') {
-	buf++;
-	delim = strchr(buf, '\'');
+      buf++;
+      delim = strchr(buf, '\'');
     }
     else {
-	delim = strchr(buf, ' ');
+      delim = strchr(buf, ' ');
     }
 
     while (delim) {
-	argv[argc++] = buf;
-	*delim = '\0';
-	buf = delim + 1;
-	while (*buf && (*buf == ' ')) /* ignore spaces */
-	       buf++;
+      argv[argc++] = buf;
+      *delim = '\0';
+      buf = delim + 1;
+      while (*buf && (*buf == ' ')) /* ignore spaces */
+        buf++;
 
-	if (*buf == '\'') {
-	    buf++;
-	    delim = strchr(buf, '\'');
-	}
-	else {
-	    delim = strchr(buf, ' ');
-	}
+      if (*buf == '\'') {
+        buf++;
+        delim = strchr(buf, '\'');
+      }
+      else {
+        delim = strchr(buf, ' ');
+      }
     }
     argv[argc] = NULL;
     
     if (argc == 0)  /* ignore blank line */
-	return 1;
+      return 1;
 
     /* should the job run in the background? */
     if ((bg = (*argv[argc-1] == '&')) != 0) {
-	argv[--argc] = NULL;
+      argv[--argc] = NULL;
     }
+
     return bg;
 }
 
@@ -231,6 +243,14 @@ int parseline(const char *cmdline, char **argv)
  */
 int builtin_cmd(char **argv) 
 {
+    if (strncmp("quit", argv[0], strlen("quit")) == 0) sigquit_handler(1);
+
+    else if (strncmp("jobs", argv[0], strlen("jobs")) == 0) {}
+
+    else if (strncmp("bg", argv[0], strlen("bg")) == 0) {}
+
+    else if (strncmp("fg", argv[0], strlen("fg")) == 0) {}
+
     return 0;     /* not a builtin command */
 }
 
