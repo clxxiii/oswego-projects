@@ -166,14 +166,28 @@ int main(int argc, char **argv)
 */
 void eval(char *cmdline) 
 {
-  char* args[MAXARGS];
-  int bg = parseline(cmdline, args);
-  if (builtin_cmd(args)) return;
+  char* argv[MAXARGS];
+  int bg = parseline(cmdline, argv);
+  if (builtin_cmd(argv)) return;
 
-  if (execv(args[0], args) == -1) {
-    printf("%s: Command not found.\n", args[0]);
-    return;
+  int child_status;
+  pid_t fork_id = fork();
+
+  if (fork_id == 0) {
+    // In the child
+    addjob(jobs, fork_id, bg + 1, cmdline);
+    int exec_status = execv(argv[0], argv);
+
+    // Code only reaches this point if the execv fails
+    if (exec_status == -1) {
+      printf("%s: Command not found.\n", argv[0]);
+      return;
+    }
   }
+
+  // Wait for child process to finish before returning to shell
+  if (!bg)
+    waitpid(fork_id, &child_status, 0);
 
   return;
 }
@@ -244,12 +258,13 @@ int parseline(const char *cmdline, char **argv)
 int builtin_cmd(char **argv) 
 {
     if (strncmp("quit", argv[0], strlen("quit")) == 0) sigquit_handler(1);
-
-    else if (strncmp("jobs", argv[0], strlen("jobs")) == 0) {}
-
-    else if (strncmp("bg", argv[0], strlen("bg")) == 0) {}
-
-    else if (strncmp("fg", argv[0], strlen("fg")) == 0) {}
+    else if (strncmp("jobs", argv[0], strlen("jobs")) == 0) {
+      listjobs(jobs);
+      return 1;
+    }
+    else if (strncmp("bg", argv[0], strlen("bg")) == 0) {return 1;}
+    else if (strncmp("fg", argv[0], strlen("fg")) == 0) {return 1;}
+    else if (strncmp("kill", argv[0], strlen("kill")) == 0) {return 1;}
 
     return 0;     /* not a builtin command */
 }
@@ -293,6 +308,8 @@ void sigchld_handler(int sig)
  */
 void sigint_handler(int sig) 
 {
+    // This is all for now
+    exit(0);
     return;
 }
 
@@ -327,7 +344,7 @@ void initjobs(struct job_t *jobs) {
     int i;
 
     for (i = 0; i < MAXJOBS; i++)
-	clearjob(&jobs[i]);
+      clearjob(&jobs[i]);
 }
 
 /* maxjid - Returns largest allocated job ID */
@@ -437,28 +454,28 @@ int pid2jid(pid_t pid)
 /* listjobs - Print the job list */
 void listjobs(struct job_t *jobs) 
 {
-    int i;
+  int i;
     
-    for (i = 0; i < MAXJOBS; i++) {
-	if (jobs[i].pid != 0) {
-	    printf("[%d] (%d) ", jobs[i].jid, jobs[i].pid);
-	    switch (jobs[i].state) {
-		case BG: 
-		    printf("Running ");
-		    break;
-		case FG: 
-		    printf("Foreground ");
-		    break;
-		case ST: 
-		    printf("Stopped ");
-		    break;
-	    default:
-		    printf("listjobs: Internal error: job[%d].state=%d ", 
-			   i, jobs[i].state);
-	    }
-	    printf("%s", jobs[i].cmdline);
-	}
+  for (i = 0; i < MAXJOBS; i++) {
+    if (jobs[i].pid != 0) {
+      printf("[%d] (%d) ", jobs[i].jid, jobs[i].pid);
+      switch (jobs[i].state) {
+        case BG: 
+          printf("Running ");
+          break;
+        case FG: 
+          printf("Foreground ");
+          break;
+        case ST: 
+          printf("Stopped ");
+          break;
+        default:
+          printf("listjobs: Internal error: job[%d].state=%d ", 
+          i, jobs[i].state);
+        }
+      printf("%s", jobs[i].cmdline);
     }
+  }
 }
 /******************************
  * end job list helper routines
