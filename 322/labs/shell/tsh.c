@@ -131,12 +131,6 @@ int main(int argc, char **argv)
 
     /* Execute the shell's read/eval loop */
     while (1) {
-        /* Read command line */
-        if (emit_prompt) {
-            printf("%s", prompt);
-            fflush(stdout);
-        }
-        if ((fgets(cmdline, MAXLINE, stdin) == NULL) && ferror(stdin)) app_error("fgets error");
 
 	/* Read command line */
     if (emit_prompt) {
@@ -170,7 +164,7 @@ int main(int argc, char **argv)
  * background children don't receive SIGINT (SIGTSTP) from the kernel
  * when we type ctrl-c (ctrl-z) at the keyboard.  
 */
-void eval(char *cmdline)
+void eval(char *cmdline) 
 {
   char* argv[MAXARGS];
   int bg = parseline(cmdline, argv);
