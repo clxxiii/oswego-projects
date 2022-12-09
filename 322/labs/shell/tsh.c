@@ -168,6 +168,7 @@ void eval(char *cmdline)
 {
   char* argv[MAXARGS];
   int bg = parseline(cmdline, argv);
+  if (bg == 2) return; // bg == 2 when there are 0 arguments (blank line)
   if (builtin_cmd(argv)) return;
 
   int child_status;
@@ -241,7 +242,7 @@ int parseline(const char *cmdline, char **argv)
     argv[argc] = NULL;
     
     if (argc == 0)  /* ignore blank line */
-      return 1;
+      return 2;
 
     /* should the job run in the background? */
     if ((bg = (*argv[argc-1] == '&')) != 0) {
