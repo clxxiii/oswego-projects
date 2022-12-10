@@ -122,5 +122,21 @@
 			"path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Haskell/PL_Haskell.pdf"
 		}
 		]
+    },
+	{
+    	"name": "Rust Assignment",
+		"desc": "Ownership and Borrowing",
+		"articles": [
+		{
+			"name": "Solution",
+			"path": "./articles/Rust Assignment.pdf",
+			"type": "assignment"
+		},
+		{
+			"name": "Specification",
+			"type": "spec",
+			"path": "https://www.cs.oswego.edu/~blue/course_pages/2022/Fall/Csc344/selected_course_documents/PL_Assignments/Other/archive/PL_Rust_MM_Assignment.pdf"
+		}
+		]
     }
 ]
