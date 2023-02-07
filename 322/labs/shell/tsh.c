@@ -171,12 +171,10 @@ void eval(char *cmdline)
   if (bg == 2) return; // bg == 2 when there are 0 arguments (blank line)
   if (builtin_cmd(argv)) return;
 
-  int child_status;
   pid_t fork_id = fork();
 
   if (fork_id == 0) {
     // In the child
-    addjob(jobs, fork_id, bg + 1, cmdline);
     int exec_status = execv(argv[0], argv);
 
     // Code only reaches this point if the execv fails
@@ -186,9 +184,15 @@ void eval(char *cmdline)
     }
   }
 
+  addjob(jobs, fork_id, bg + 1, cmdline);
   // Wait for child process to finish before returning to shell
-  if (!bg)
-    waitpid(fork_id, &child_status, 0);
+  if (bg) {
+    struct job_t* job = getjobpid(jobs, fork_id);
+    printf("[%d] (%d) %s", job->jid, job->pid, job->cmdline);
+  }
+  else {
+    waitfg(fork_id);
+  }
 
   return;
 }
@@ -258,13 +262,13 @@ int parseline(const char *cmdline, char **argv)
  */
 int builtin_cmd(char **argv) 
 {
-    if (strncmp("quit", argv[0], strlen("quit")) == 0) sigquit_handler(1);
+    if (strncmp("quit", argv[0], strlen("quit")) == 0) exit(1);
     else if (strncmp("jobs", argv[0], strlen("jobs")) == 0) {
       listjobs(jobs);
       return 1;
     }
-    else if (strncmp("bg", argv[0], strlen("bg")) == 0) {return 1;}
-    else if (strncmp("fg", argv[0], strlen("fg")) == 0) {return 1;}
+    else if (strncmp("bg", argv[0], strlen("bg")) == 0) { do_bgfg(argv); return 1; }
+    else if (strncmp("fg", argv[0], strlen("fg")) == 0) { do_bgfg(argv); return 1; }
     else if (strncmp("kill", argv[0], strlen("kill")) == 0) {return 1;}
 
     return 0;     /* not a builtin command */
@@ -275,6 +279,18 @@ int builtin_cmd(char **argv)
  */
 void do_bgfg(char **argv) 
 {
+    if (argv[1] == NULL) return;
+
+    int jid = atoi(argv[1]);
+
+    // Convert pid to jid if given pid
+    if (jid > MAXJID) 
+      jid = pid2jid(jid);
+
+    struct job_t* job = getjobjid(jobs, jid);
+    if (strncmp("fg", argv[0], strlen("fg"))) {
+      waitfg(job->pid);
+    }
     return;
 }
 
@@ -283,6 +299,9 @@ void do_bgfg(char **argv)
  */
 void waitfg(pid_t pid)
 {
+    int child_status;
+    waitpid(pid, &child_status, 0);
+    deletejob(jobs,pid);
     return;
 }
 
@@ -299,7 +318,11 @@ void waitfg(pid_t pid)
  */
 void sigchld_handler(int sig) 
 {
-    return;
+  int latest_job_jid = maxjid(jobs);
+  struct job_t* latest_job = getjobjid(jobs, latest_job_jid);
+  latest_job->state = ST;
+  deletejob(jobs, latest_job->pid);
+  return;
 }
 
 /* 
@@ -307,11 +330,13 @@ void sigchld_handler(int sig)
  *    user types ctrl-c at the keyboard.  Catch it and send it along
  *    to the foreground job.  
  */
-void sigint_handler(int sig) 
+void sigint_handler(int sig)
 {
-    // This is all for now
-    exit(0);
-    return;
+    pid_t fg = fgpid(jobs);
+    if (fg == 0) return;
+    struct job_t* fg_job = getjobpid(jobs, fg);
+    kill(-fg, SIGINT);
+    printf("Job [%d] (%d) terminated by signal %d\n", fg_job->jid, fg_job->pid, sig);
 }
 
 /*
@@ -321,7 +346,11 @@ void sigint_handler(int sig)
  */
 void sigtstp_handler(int sig) 
 {
-    return;
+    pid_t fg = fgpid(jobs);
+    if (fg == 0) return;
+    struct job_t* fg_job = getjobpid(jobs, fg);
+    kill(-fg, sig);
+    printf("Job [%d] (%d) stopped by signal %d\n", fg_job->jid, fg_job->pid, sig);
 }
 
 /*********************
