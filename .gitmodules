@@ -1,0 +1,3 @@
+[submodule "365/yelp-sim"]
+	path = 365/yelp-sim
+	url = git@github.com:clxxiii/csc365-yelp-sim.git
