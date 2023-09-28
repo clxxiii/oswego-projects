@@ -2,10 +2,10 @@
 	import Setup from "./lib/setup/Setup.svelte";
 	import Simulate from "./lib/simulate/Simulate.svelte";
 
-	let idle: boolean;
+	let setupPhase: boolean = false;
 </script>
 
 <main>
-	<Setup bind:visible={idle} />
-	<Simulate visible={!idle} />
+	<Setup bind:visible={setupPhase} />
+	<Simulate visible={!setupPhase} />
 </main>
