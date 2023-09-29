@@ -7,6 +7,8 @@ import dev.clxxiii.csc375.object.BuildOptions;
 import dev.clxxiii.csc375.object.EditSlotOptions;
 import java.io.IOException;
 import java.util.Random;
+
+import dev.clxxiii.csc375.object.GetAffinityOptions;
 import org.json.JSONObject;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -17,7 +19,7 @@ public class Session {
 
   private WebSocketSession ws;
   public StationMap map;
-  private int canvasScale = 50;
+  private final int canvasScale = 2;
 
   protected Session(WebSocketSession ws) { this.ws = ws; }
 
@@ -39,6 +41,11 @@ public class Session {
   protected void editSlotCoords(EditSlotOptions opt) {
     map.editSlot(opt.index, opt.x, opt.y);
     sendMessage(new JSONObject().put("map", map.toJSON()));
+  }
+
+  protected void getAffinity(GetAffinityOptions opt) {
+    float affinity = map.getSlotAffinity(opt.getFirst(), opt.getSecond());
+    sendMessage(new JSONObject().put("affinity", affinity));
   }
 
   /*

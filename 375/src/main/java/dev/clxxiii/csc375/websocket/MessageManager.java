@@ -4,6 +4,8 @@ import dev.clxxiii.csc375.SessionManager;
 import dev.clxxiii.csc375.object.BuildOptions;
 import dev.clxxiii.csc375.object.EditSlotOptions;
 import java.io.IOException;
+
+import dev.clxxiii.csc375.object.GetAffinityOptions;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -29,6 +31,11 @@ public class MessageManager extends TextWebSocketHandler {
     if (json.getString("message").equals("edit_slot")) {
       EditSlotOptions data = new EditSlotOptions(json.getJSONObject("data"));
       SessionManager.editSlot(session.hashCode(), data);
+    }
+
+    if (json.getString("message").equals("get_affinity")) {
+      GetAffinityOptions data = new GetAffinityOptions(json.getJSONObject("data"));
+      SessionManager.getAffinity(session.hashCode(), data);
     }
   }
 
