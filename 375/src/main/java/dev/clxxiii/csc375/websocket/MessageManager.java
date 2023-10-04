@@ -1,11 +1,8 @@
 package dev.clxxiii.csc375.websocket;
 
 import dev.clxxiii.csc375.SessionManager;
-import dev.clxxiii.csc375.object.BuildOptions;
-import dev.clxxiii.csc375.object.EditSlotOptions;
+import dev.clxxiii.csc375.object.MakeGridOptions;
 import java.io.IOException;
-
-import dev.clxxiii.csc375.object.GetAffinityOptions;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -23,19 +20,16 @@ public class MessageManager extends TextWebSocketHandler {
     String payload = message.getPayload();
 
     JSONObject json = new JSONObject(payload);
-    if (json.getString("message").equals("build_map")) {
-      BuildOptions data = new BuildOptions(json.getJSONObject("data"));
-      SessionManager.buildMap(session.hashCode(), data);
+    if (json.getString("message").equals("make_grid")) {
+      MakeGridOptions data = new MakeGridOptions(json.getJSONObject("data"));
+      SessionManager.makeGrid(session.hashCode(), data);
     }
-
-    if (json.getString("message").equals("edit_slot")) {
-      EditSlotOptions data = new EditSlotOptions(json.getJSONObject("data"));
-      SessionManager.editSlot(session.hashCode(), data);
+    if (json.getString("message").equals("go!")) {
+      int threads = json.getJSONObject("data").getInt("threads");
+      SessionManager.start(session.hashCode(), threads);
     }
-
-    if (json.getString("message").equals("get_affinity")) {
-      GetAffinityOptions data = new GetAffinityOptions(json.getJSONObject("data"));
-      SessionManager.getAffinity(session.hashCode(), data);
+    if (json.getString("message").equals("stop!")) {
+      SessionManager.stop(session.hashCode());
     }
   }
 
@@ -43,6 +37,11 @@ public class MessageManager extends TextWebSocketHandler {
   public void afterConnectionEstablished(WebSocketSession session)
       throws Exception {
     SessionManager.makeNew(session);
+
+    JSONObject json = new JSONObject().put("size", 7).put("types", 4);
+
+    MakeGridOptions data = new MakeGridOptions(json);
+    SessionManager.makeGrid(session.hashCode(), data);
   }
 
   @Override

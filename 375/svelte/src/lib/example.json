@@ -1,132 +1,67 @@
 {
-  "map": [
-    {
-      "x": 11.197819,
-      "station": {
-        "service": { "a": true, "b": false, "c": true, "d": true },
-        "id": 5
-      },
-      "y": 24.72573
-    },
-    {
-      "x": -8.641943,
-      "station": {
-        "service": { "a": false, "b": true, "c": true, "d": true },
-        "id": 6
-      },
-      "y": -22.237823
-    },
-    {
-      "x": 9.082806,
-      "station": {
-        "service": { "a": false, "b": false, "c": false, "d": true },
-        "id": 7
-      },
-      "y": -3.5245361
-    },
-    {
-      "x": -16.932648,
-      "station": {
-        "service": { "a": false, "b": false, "c": false, "d": false },
-        "id": 8
-      },
-      "y": -3.834797
-    },
-    {
-      "x": -16.05688,
-      "station": {
-        "service": { "a": false, "b": false, "c": true, "d": false },
-        "id": 9
-      },
-      "y": -6.33881
-    },
-    {
-      "x": -6.3704014,
-      "station": {
-        "service": { "a": false, "b": true, "c": true, "d": false },
-        "id": 10
-      },
-      "y": -16.393902
-    },
-    {
-      "x": 19.759098,
-      "station": {
-        "service": { "a": false, "b": false, "c": true, "d": true },
-        "id": 11
-      },
-      "y": -9.843954
-    },
-    {
-      "x": 20.612442,
-      "station": {
-        "service": { "a": true, "b": false, "c": true, "d": false },
-        "id": 12
-      },
-      "y": -12.849572
-    },
-    {
-      "x": -9.174177,
-      "station": {
-        "service": { "a": true, "b": true, "c": true, "d": false },
-        "id": 13
-      },
-      "y": -2.9018784
-    },
-    {
-      "x": -14.19358,
-      "station": {
-        "service": { "a": false, "b": true, "c": true, "d": false },
-        "id": 14
-      },
-      "y": 1.7101555
-    },
-    {
-      "x": -5.347971,
-      "station": {
-        "service": { "a": true, "b": true, "c": false, "d": true },
-        "id": 15
-      },
-      "y": -11.014539
-    },
-    {
-      "x": 9.794228,
-      "station": {
-        "service": { "a": true, "b": false, "c": false, "d": false },
-        "id": 16
-      },
-      "y": 1.3410358
-    },
-    {
-      "x": 8.24789,
-      "station": {
-        "service": { "a": true, "b": false, "c": false, "d": true },
-        "id": 17
-      },
-      "y": -21.931902
-    },
-    {
-      "x": -16.10421,
-      "station": {
-        "service": { "a": false, "b": false, "c": true, "d": false },
-        "id": 18
-      },
-      "y": -24.294254
-    },
-    {
-      "x": -24.276981,
-      "station": {
-        "service": { "a": false, "b": true, "c": false, "d": false },
-        "id": 19
-      },
-      "y": -22.009775
-    },
-    {
-      "x": -2.020216,
-      "station": {
-        "service": { "a": true, "b": true, "c": true, "d": true },
-        "id": 20
-      },
-      "y": 17.037933
-    }
+  "grid": [
+    [
+      2,
+      0,
+      3,
+      0,
+      3,
+      1,
+      3
+    ],
+    [
+      2,
+      3,
+      0,
+      2,
+      0,
+      2,
+      3
+    ],
+    [
+      3,
+      0,
+      2,
+      2,
+      2,
+      0,
+      1
+    ],
+    [
+      2,
+      2,
+      1,
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      2,
+      3,
+      0,
+      3,
+      2,
+      2
+    ],
+    [
+      0,
+      2,
+      2,
+      1,
+      2,
+      0,
+      3
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      3,
+      3,
+      3
+    ]
   ]
 }

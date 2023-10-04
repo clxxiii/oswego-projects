@@ -1,14 +1,11 @@
 package dev.clxxiii.csc375;
 
-import dev.clxxiii.csc375.model.Station;
-import dev.clxxiii.csc375.model.StationMap;
-import dev.clxxiii.csc375.model.StationSlot;
-import dev.clxxiii.csc375.object.BuildOptions;
-import dev.clxxiii.csc375.object.EditSlotOptions;
+import dev.clxxiii.csc375.concurrent.Exchanger;
+import dev.clxxiii.csc375.model.Grid;
+import dev.clxxiii.csc375.object.GetAffinityOptions;
+import dev.clxxiii.csc375.object.MakeGridOptions;
 import java.io.IOException;
 import java.util.Random;
-
-import dev.clxxiii.csc375.object.GetAffinityOptions;
 import org.json.JSONObject;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -18,34 +15,33 @@ public class Session {
   static Random random = new Random();
 
   private WebSocketSession ws;
-  public StationMap map;
-  private final int canvasScale = 2;
+  Exchanger ex;
 
-  protected Session(WebSocketSession ws) { this.ws = ws; }
-
-  protected void buildMap(BuildOptions config) {
-    map = new StationMap(config.slots);
-    for (int i = 0; i < config.slots; i++) {
-      StationSlot slot =
-          new StationSlot(getRandomCoordinate(), getRandomCoordinate());
-      map.setSlot(slot, i);
-
-      if (i < config.stations) {
-        Station station = new Station(getRandomBooleanArray());
-        map.setStation(station, i);
+  protected Session(WebSocketSession ws) {
+    ex = new Exchanger();
+    this.ws = ws;
+  }
+  protected void makeGrid(MakeGridOptions data) {
+    Grid grid = new Grid(data.size);
+    for (int y = 0; y < data.size; y++) {
+      for (int x = 0; x < data.size; x++) {
+        grid.set(x, y, random.nextInt(0, data.types));
       }
     }
-    sendMessage(new JSONObject().put("map", map.toJSON()));
+    ex.setGrid(grid);
+    sendMessage(new JSONObject().put("grid", grid.toJSON()));
   }
-
-  protected void editSlotCoords(EditSlotOptions opt) {
-    map.editSlot(opt.index, opt.x, opt.y);
-    sendMessage(new JSONObject().put("map", map.toJSON()));
-  }
-
   protected void getAffinity(GetAffinityOptions opt) {
-    float affinity = map.getSlotAffinity(opt.getFirst(), opt.getSecond());
+    int affinity =
+        ex.getGrid().getDirectAffinity(opt.x1, opt.y1, opt.x2, opt.y2);
     sendMessage(new JSONObject().put("affinity", affinity));
+  }
+
+  protected void start(int threads) { ex.startRunning(threads, ws); }
+
+  protected void stop() {
+    ex.stopRunning();
+    sendMessage(new JSONObject().put("grid", ex.getGrid().toJSON()));
   }
 
   /*
@@ -70,18 +66,5 @@ public class Session {
     } catch (IOException e) {
       System.out.println(e.toString());
     }
-  }
-  private float getRandomCoordinate() {
-    float halfCanvas = (float)(canvasScale / 2.0);
-    return (random.nextFloat() * canvasScale) - halfCanvas;
-  }
-
-  private boolean[] getRandomBooleanArray() {
-    boolean[] out = new boolean[4];
-    out[0] = random.nextBoolean();
-    out[1] = random.nextBoolean();
-    out[2] = random.nextBoolean();
-    out[3] = random.nextBoolean();
-    return out;
   }
 }

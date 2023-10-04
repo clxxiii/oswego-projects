@@ -6,18 +6,15 @@ import org.json.JSONObject;
 public class GetAffinityOptions {
 
 
-    final int[] indexes = new int[2];
+    public final int x1;
+    public final int y1;
+    public final int x2;
+    public final int y2;
     public GetAffinityOptions(JSONObject json) {
-       JSONArray array = json.getJSONArray("slots");
-       indexes[0] = array.getInt(0);
-       indexes[1] = array.getInt(1);
+        x1 = json.getInt("x1");
+        y1 = json.getInt("y1");
+        x2 = json.getInt("x2");
+        y2 = json.getInt("y2");
     }
 
-    public int getFirst() {
-        return indexes[0];
-    }
-
-    public int getSecond() {
-        return indexes[1];
-    }
 }
