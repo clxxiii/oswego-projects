@@ -6,8 +6,8 @@ import org.openjdk.jmh.annotations.*;
 @Fork(2)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-@Warmup(iterations = 0)
-@Measurement(iterations = 1)
+@Warmup(iterations = 5)
+@Measurement(iterations = 5)
 @Threads(Threads.MAX)
 public class BenchmarkRunner {
 
