@@ -22,12 +22,12 @@ public class BenchmarkRunner {
   }
 
   @Benchmark
-  public void lrhwNonBlocking(Wallet w, CollectionManager b) {
+  public void hrlwNonBlocking(Wallet w, CollectionManager b) {
     b.doAction(0.75, w, CollectionType.NONBLOCKING);
   }
 
   @Benchmark
-  public void lrhwBlocking(Wallet w, CollectionManager b) {
+  public void hrlwBlocking(Wallet w, CollectionManager b) {
     b.doAction(0.75, w, CollectionType.BLOCKING);
   }
 }

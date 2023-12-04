@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSC375 Microbenchmark Results</title>
+    <style>
+      .graphs {
+        width: 700px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="graphs">
+      <canvas id="gee"></canvas>
+      <canvas id="rho"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const gee = document.getElementById("gee");
+      const rho = document.getElementById("rho");
+      new Chart(gee, {
+        type: "bar",
+        data: {
+          labels: [
+            "High Write NonBlocking",
+            "High Read NonBlocking",
+            "High Write Blocking",
+            "High Read Blocking",
+          ],
+          datasets: [
+            {
+              label: "Throughput (microseconds)",
+              data: [0.115, 0.114, 0.116, 0.118],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: "Microbenchmark Results run on Gee",
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      new Chart(rho, {
+        type: "bar",
+        data: {
+          labels: [
+            "High Write NonBlocking",
+            "High Read NonBlocking",
+            "High Write Blocking",
+            "High Read Blocking",
+          ],
+          datasets: [
+            {
+              label: "Throughput (microseconds)",
+              data: [0.079, 0.083, 0.077, 0.08],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: "Microbenchmark Results run on Rho",
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
