@@ -4,13 +4,15 @@
 </script>
 
 <table class="m-auto mt-5">
-	{#each $grid as row}
-		<tr class="row">
-			{#each row as data}
-        {#key data}
-				  <Cell {data} />
-        {/key}
+	{#key $grid}
+		{#if $grid?.grid}
+			{#each $grid.grid as row}
+				<tr class="row">
+					{#each row as data}
+						<Cell {data} />
+					{/each}
+				</tr>
 			{/each}
-		</tr>
-	{/each}
+		{/if}
+	{/key}
 </table>

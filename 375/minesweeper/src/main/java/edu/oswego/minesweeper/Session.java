@@ -6,6 +6,7 @@ import edu.oswego.minesweeper.options.MakeGridOptions;
 import java.io.IOException;
 import java.text.ParseException;
 
+import edu.oswego.minesweeper.solver.Solver;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.socket.TextMessage;
@@ -15,6 +16,7 @@ public class Session {
 
   private final WebSocketSession ws;
   private Grid grid;
+  private Solver solver;
 
   public Session(WebSocketSession ws) { this.ws = ws; }
   public void parseAction(JSONObject json) {
@@ -40,6 +42,12 @@ public class Session {
       else if (action.equalsIgnoreCase("reveal")) {
         revealCell(new CellActionOptions(json));
       }
+      else if (action.equalsIgnoreCase("startSolve")) {
+        startSolving();
+      }
+      else if (action.equalsIgnoreCase("stopSolve")) {
+        stopSolving();
+      }
       else {
         sendError(
                 "Invalid Action",
@@ -52,6 +60,7 @@ public class Session {
   }
   private void makeGrid(MakeGridOptions options) {
     grid = new Grid(options.width, options.height, options.bombs);
+    solver = new Solver(grid, () -> { sendMessage(grid.toJSON()); });
     sendMessage(grid.toJSON());
   }
   private void flagCell(CellActionOptions options) {
@@ -61,6 +70,12 @@ public class Session {
   private void revealCell(CellActionOptions options) {
     grid.reveal(options.x, options.y);
     sendMessage(grid.toJSON());
+  }
+  private void startSolving() {
+    solver.start();
+  }
+  private void stopSolving() {
+    solver.stop();
   }
 
   /*

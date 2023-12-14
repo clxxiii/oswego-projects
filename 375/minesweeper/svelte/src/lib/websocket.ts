@@ -11,7 +11,7 @@ socket.onmessage = (msg) => {
   console.log(data);
 
   if (data.grid) {
-    grid.set(data.grid);
+    grid.set(data);
   }
 };
 
@@ -53,12 +53,9 @@ export const sendRevealMessage = (x: number, y: number) => {
   socket.send(JSON.stringify(data));
 };
 
-export const sendStartMessage = (threads: number) => {
+export const sendStartMessage = () => {
   const data = {
-    message: "go!",
-    data: {
-      threads,
-    },
+    action: "startSolve"
   };
 
   socket.send(JSON.stringify(data));
@@ -66,7 +63,7 @@ export const sendStartMessage = (threads: number) => {
 
 export const sendStopMessage = () => {
   const data = {
-    message: "stop!",
+    action: "stopSolve"
   };
 
   socket.send(JSON.stringify(data));

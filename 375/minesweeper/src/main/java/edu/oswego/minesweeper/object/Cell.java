@@ -2,26 +2,37 @@ package edu.oswego.minesweeper.object;
 
 import org.json.JSONObject;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Cell {
   private int value;
   private final boolean bomb;
   public boolean revealed = false;
   public boolean flagged = false;
+  private final ReentrantLock revealLock;
 
-  protected Cell(boolean bomb) { this.bomb = bomb; }
+  protected Cell(boolean bomb, int value) {
+    this.bomb = bomb;
+    this.value = value;
 
-  protected void setValue(int v) { value = v; }
+    revealLock = new ReentrantLock();
+  }
 
   /**
-   * Reveals the content of the cell and returns it.
+   * Atomically reveals the content of the cell and returns it.
    * If the square contains a bomb, then the value 9 will be returned.
-   *
    */
   public int reveal() {
-    revealed = true;
-    flagged = false;
-    if (bomb)
-      return 9;
+    revealLock.lock();
+    int value = this.value;
+    try {
+      revealed = true;
+      flagged = false;
+      if (bomb) value = 9;
+    }
+    finally {
+      revealLock.unlock();
+    }
     return value;
   }
 
@@ -45,7 +56,11 @@ public class Cell {
   }
 
   public String toString() {
-    if (bomb) return "x";
-    return "" + value;
+    if (revealed) {
+      if (bomb) return "x";
+      return "" + value;
+    }
+
+    return "█";
   }
 }
