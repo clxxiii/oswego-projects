@@ -73,12 +73,9 @@ public class Session {
     sendMessage(grid.toJSON());
   }
   private void startSolving() {
-    solverThread = new Thread(() -> solver.start());
-    solverThread.start();
+    solver.start();
   }
   private void stopSolving() {
-    System.out.println("Stop");
-    solverThread.interrupt();
     solver.stop();
   }
 

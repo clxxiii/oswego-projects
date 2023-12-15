@@ -1,11 +1,10 @@
-package edu.oswego.minesweeper.solver;
+package edu.oswego.mineserver;
 
-import edu.oswego.minesweeper.object.Cell;
-import edu.oswego.minesweeper.object.Grid;
-import edu.oswego.minesweeper.options.CellAction;
+import edu.oswego.mineserver.CellAction;
+import edu.oswego.mineserver.object.Cell;
+import edu.oswego.mineserver.object.Grid;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.RecursiveAction;
 
 /**
  * Implements Strategy 1 on a single significant cell.
