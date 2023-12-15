@@ -13,11 +13,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
   </parent>
   <groupId>edu.oswego</groupId>
   <artifactId>minesweeper</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>minesweeper</name>
   <description>Demo project for Spring Boot</description>
   <properties>
-    <java.version>17</java.version>
+    <java.version>11</java.version>
   </properties>
   <dependencies>
     <dependency>

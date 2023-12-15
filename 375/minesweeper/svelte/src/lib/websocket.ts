@@ -1,7 +1,7 @@
 import ReconnectingWebsocket from "reconnecting-websocket";
 import { grid } from "./stores";
 
-const url = "ws://localhost:8080/app";
+const url = "ws://localhost:26971/app";
 
 export let socket = new ReconnectingWebsocket(url);
 
@@ -55,7 +55,7 @@ export const sendRevealMessage = (x: number, y: number) => {
 
 export const sendStartMessage = () => {
   const data = {
-    action: "startSolve"
+    action: "startSolve",
   };
 
   socket.send(JSON.stringify(data));
@@ -63,7 +63,7 @@ export const sendStartMessage = () => {
 
 export const sendStopMessage = () => {
   const data = {
-    action: "stopSolve"
+    action: "stopSolve",
   };
 
   socket.send(JSON.stringify(data));
