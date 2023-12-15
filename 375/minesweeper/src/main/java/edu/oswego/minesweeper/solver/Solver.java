@@ -3,17 +3,17 @@ package edu.oswego.minesweeper.solver;
 import edu.oswego.minesweeper.Callback;
 import edu.oswego.minesweeper.object.Cell;
 import edu.oswego.minesweeper.object.Grid;
+import edu.oswego.minesweeper.options.CellAction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.CountDownLatch;
 
 
 public class Solver {
     private final Grid grid;
     private final boolean[][] completed;
-
     private final Callback callback;
-
     private boolean solving;
 
     public Solver(Grid grid, Callback callback) {
@@ -23,7 +23,11 @@ public class Solver {
     }
     public void start() {
         solving = true;
-        solve();
+        try {
+            solve();
+        } catch (InterruptedException e) {
+            System.out.println("Solving process was interrupted, try again.");
+        }
     }
     public void stop() {
         solving = false;
@@ -36,7 +40,7 @@ public class Solver {
      *    smallest chance.
      * Is there a smarter strategy 2, almost certainly. Do I know it? No, so this is what you get.
      */
-    private void solve() {
+    private void solve() throws InterruptedException {
         if (grid.isSolved()) return;
         if (!solving) return;
 
@@ -47,45 +51,12 @@ public class Solver {
             return;
         }
 
-        // We need to keep track of whether the previous round of step 1 was successful or not.
-        boolean successful = false;
-
-        // Check the full grid for significant squares
-        int[][] significantSquares = getSignificantSquares();
-        for (int[] coords : significantSquares) {
-            int x = coords[0];
-            int y = coords[1];
-            Cell cell = grid.getCell(x,y);
-            // Count up untouched and flagged squares to check for completeness
-            int untouched = 0;
-            int flagged = 0;
-            for (int[] xy : grid.getSurroundingIndexes(x,y)) {
-                Cell c = grid.getCell(xy[0],xy[1]);
-                if (!c.revealed) {
-                    if (c.flagged) flagged++;
-                    else untouched++;
-                }
-            }
-
-            // KEY: If the number of flags is equal to the value of the square, then every surrounding cell
-            // is safe.
-            if (flagged == cell.getValue()) {
-                revealSurrounding(x, y);
-                completed[y][x] = true;
-                successful = true;
-            }
-
-            // KEY: If the number of untouched squares is equal to the value of the cell minus the number of
-            // flags, then we know that every untouched square is also a bomb.
-            if (untouched == (cell.getValue() - flagged)) {
-                flagSurrounding(x, y);
-                completed[y][x] = true;
-                successful = true;
-            }
-        }
+        boolean step1Success = strategy1();
+        // Display progress
+        runCallback();
 
         // If the last step 1 worked, try again!
-        if (successful) {
+        if (step1Success) {
             solve();
             return;
         }
@@ -144,6 +115,41 @@ public class Solver {
          */
     }
 
+    private boolean strategy1() throws InterruptedException {
+
+        // We need to keep track of whether the previous round of step 1 was successful or not.
+        boolean successful = false;
+
+        // Check the full grid for significant squares
+        int[][] significantSquares = getSignificantSquares();
+        Strategy1Solver[] solvers = new Strategy1Solver[significantSquares.length];
+        CountDownLatch latch = new CountDownLatch(solvers.length);
+        for (int i = 0; i < solvers.length; i++) {
+            int x = significantSquares[i][0];
+            int y = significantSquares[i][1];
+            solvers[i] = new Strategy1Solver(grid, x, y, latch);
+            new Thread(solvers[i]).start();
+        }
+
+        latch.await();
+
+        for (Strategy1Solver solver : solvers) {
+            if (solver.result == CellAction.FLAG) {
+                flagSurrounding(solver.x, solver.y);
+                completed[solver.y][solver.x] = true;
+                successful = true;
+            }
+
+            if (solver.result == CellAction.REVEAL) {
+                revealSurrounding(solver.x, solver.y);
+                completed[solver.y][solver.x] = true;
+                successful = true;
+            }
+        }
+
+        return successful;
+    }
+
     private int[][] getSignificantSquares() {
         ArrayList<int[]> squares = new ArrayList<>();
         for (int y = 0; y < grid.height; y++) {
@@ -176,14 +182,15 @@ public class Solver {
 
         int value = grid.reveal(x, y);
         if (value == 9) solving = false;
-        callback.run();
     }
     private void flagSquare(int x, int y) {
         Cell cell = grid.getCell(x, y);
         if (cell.flagged || cell.revealed) return;
 
         grid.flag(x, y);
-        callback.run();
     }
 
+    private void runCallback() {
+       new Thread(callback::run).start();
+    }
 }

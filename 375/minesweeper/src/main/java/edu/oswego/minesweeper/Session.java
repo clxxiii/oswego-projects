@@ -17,6 +17,7 @@ public class Session {
   private final WebSocketSession ws;
   private Grid grid;
   private Solver solver;
+  private Thread solverThread;
 
   public Session(WebSocketSession ws) { this.ws = ws; }
   public void parseAction(JSONObject json) {
@@ -72,9 +73,12 @@ public class Session {
     sendMessage(grid.toJSON());
   }
   private void startSolving() {
-    solver.start();
+    solverThread = new Thread(() -> solver.start());
+    solverThread.start();
   }
   private void stopSolving() {
+    System.out.println("Stop");
+    solverThread.interrupt();
     solver.stop();
   }
 
@@ -87,7 +91,7 @@ public class Session {
             .put("message", desc);
     sendMessage(error);
   }
-  protected void sendMessage(JSONObject msg) {
+  protected synchronized void sendMessage(JSONObject msg) {
     TextMessage payload = new TextMessage(msg.toString());
 
     try {

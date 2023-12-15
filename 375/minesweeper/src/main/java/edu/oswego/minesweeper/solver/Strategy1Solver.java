@@ -4,24 +4,27 @@ import edu.oswego.minesweeper.object.Cell;
 import edu.oswego.minesweeper.object.Grid;
 import edu.oswego.minesweeper.options.CellAction;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.RecursiveAction;
 
 /**
  * Implements Strategy 1 on a single significant cell.
  * Returns a CellAction on whether to ignore, flag, or reveal all cells surrounding the given cell.
  */
-public class Strategy1Solver extends RecursiveAction {
+public class Strategy1Solver implements Runnable {
     final Grid grid;
     final int x;
     final int y;
+    final CountDownLatch latch;
     CellAction result = CellAction.IGNORE;
-    public Strategy1Solver(Grid grid, int x, int y) {
+    public Strategy1Solver(Grid grid, int x, int y, CountDownLatch latch) {
         this.grid = grid;
         this.x = x;
         this.y = y;
+        this.latch = latch;
     }
 
-    public void compute() {
+    public void run() {
         Cell cell = grid.getCell(x,y);
         // Count up untouched and flagged squares to check for completeness
         int untouched = 0;
@@ -45,5 +48,7 @@ public class Strategy1Solver extends RecursiveAction {
         if (untouched == (cell.getValue() - flagged)) {
             result = CellAction.FLAG;
         }
+
+        latch.countDown();
     }
 }

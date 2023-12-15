@@ -116,7 +116,6 @@ public class Grid {
     public boolean isSolved() {
         return getProgress() == 1.0d && flags == bombs;
     }
-    public boolean isFailed() { return failed; }
 
 
     /**
