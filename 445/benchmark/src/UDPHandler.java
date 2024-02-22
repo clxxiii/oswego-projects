@@ -14,6 +14,7 @@ import object.Args;
 public class UDPHandler {
 
   static DatagramSocket socket;
+  static InetAddress addr;
   static InputStream in;
   static OutputStream out;
 
@@ -53,8 +54,8 @@ public class UDPHandler {
 
   private static void makeClient(Args args) throws IOException {
     System.out.println(args.toString());
-    InetAddress addr = InetAddress.getByName(args.ip);
-    socket = new DatagramSocket(args.port, addr);
+    addr = InetAddress.getByName(args.ip);
+    socket = new DatagramSocket();
     System.out.println("Connection established, running tests.");
   }
 
@@ -71,7 +72,7 @@ public class UDPHandler {
 
       // Send msg and wait for response
       byte[] input = msg.bytes();
-      socket.send(new DatagramPacket(input, input.length));
+      socket.send(new DatagramPacket(input, input.length, addr, args.port));
 
       byte[] packetBuf = new byte[input.length];
       DatagramPacket packet = new DatagramPacket(packetBuf, packetBuf.length);
@@ -146,7 +147,7 @@ public class UDPHandler {
       recieved.encrypt(key);
 
       byte[] output = recieved.bytes();
-      socket.send(new DatagramPacket(output, output.length));
+      socket.send(new DatagramPacket(output, output.length, packet.getAddress(), packet.getPort()));
     }
   }
 

@@ -129,7 +129,7 @@ public class TCPHandler {
   private static void serverLatency(Args args) throws IOException {
     Message globalMessage = messages.getSize(args.size);
 
-    for (int i = 0; i < THROUGHPUT_ITERATIONS; i++) {
+    for (int i = 0; i < LATENCY_ITERATIONS; i++) {
       byte[] input = new byte[args.size];
       in.read(input, 0, args.size);
       Message recieved = Message.fromEncrypted(input);
