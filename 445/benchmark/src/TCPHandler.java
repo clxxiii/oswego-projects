@@ -87,7 +87,7 @@ public class TCPHandler {
         return;
       }
 
-      System.out.println((end - start) / 1000000 + " ms");
+      System.out.println((end - start) + " ns");
     }
     socket.close();
   }
@@ -114,7 +114,8 @@ public class TCPHandler {
       long end = System.nanoTime();
       long time = end - start;
 
-      System.out.println(time / 1000000 + " ms");
+      double throughput = THROUGHPUT_FILESIZE / ((double) time / 1000000000);
+      System.out.println(throughput + " bps");
     }
   }
 

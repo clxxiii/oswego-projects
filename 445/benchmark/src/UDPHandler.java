@@ -91,7 +91,7 @@ public class UDPHandler {
         return;
       }
 
-      System.out.println((end - start) / 1000000 + " ms");
+      System.out.println((end - start) + " ns");
     }
     socket.close();
   }
@@ -110,16 +110,18 @@ public class UDPHandler {
         msg.encrypt(key);
 
         byte[] input = msg.bytes();
-        socket.send(new DatagramPacket(input, input.length));
+        socket.send(new DatagramPacket(input, input.length, addr, args.port));
 
         byte[] ackBuf = new byte[1];
+
         DatagramPacket ack = new DatagramPacket(ackBuf, ackBuf.length);
         socket.receive(ack);
       }
       long end = System.nanoTime();
       long time = end - start;
 
-      System.out.println(time / 1000000 + " ms");
+      double throughput = THROUGHPUT_FILESIZE / ((double) time / 1000000000);
+      System.out.println(throughput + " bps");
     }
   }
 
@@ -131,7 +133,7 @@ public class UDPHandler {
   private static void serverLatency(Args args) throws IOException {
     Message globalMessage = messages.getSize(args.size);
 
-    for (int i = 0; i < THROUGHPUT_ITERATIONS; i++) {
+    for (int i = 0; i < LATENCY_ITERATIONS; i++) {
       byte[] packetBuf = new byte[args.size];
       DatagramPacket packet = new DatagramPacket(packetBuf, packetBuf.length);
       socket.receive(packet);
@@ -147,7 +149,9 @@ public class UDPHandler {
       recieved.encrypt(key);
 
       byte[] output = recieved.bytes();
-      socket.send(new DatagramPacket(output, output.length, packet.getAddress(), packet.getPort()));
+      InetAddress clientAddr = packet.getAddress();
+      int clientPort = packet.getPort();
+      socket.send(new DatagramPacket(output, output.length, clientAddr, clientPort));
     }
   }
 
@@ -165,7 +169,9 @@ public class UDPHandler {
         byte[] input = packet.getData();
 
         byte[] ack = { (byte) 0 };
-        socket.send(new DatagramPacket(ack, ack.length));
+        InetAddress clientAddr = packet.getAddress();
+        int clientPort = packet.getPort();
+        socket.send(new DatagramPacket(ack, ack.length, clientAddr, clientPort));
 
         messages.add(Message.fromEncrypted(input));
       }
