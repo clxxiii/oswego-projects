@@ -4,8 +4,8 @@ import java.nio.ByteBuffer;
 
 public class DataPacket extends Packet {
 
-  final short blockNumber;
-  final byte[] data;
+  final public short blockNumber;
+  final public byte[] data;
 
   public DataPacket(int blockNumber, byte[] data) {
     super(Opcode.DATA);
@@ -25,5 +25,12 @@ public class DataPacket extends Packet {
 
     buffer.flip();
     return buffer.array();
+  }
+
+  protected static DataPacket parseData(ByteBuffer buffer) {
+    short blockNumber = buffer.getShort();
+    byte[] data = new byte[buffer.remaining()];
+    buffer.get(data);
+    return new DataPacket(blockNumber, data);
   }
 }

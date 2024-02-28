@@ -3,7 +3,7 @@ package packet;
 import java.nio.ByteBuffer;
 
 public class AckPacket extends Packet {
-  final short blockNumber;
+  final public short blockNumber;
 
   public AckPacket(int blockNumber) {
     super(Opcode.ACK);
@@ -20,5 +20,10 @@ public class AckPacket extends Packet {
 
     buffer.flip();
     return buffer.array();
+  }
+
+  public static AckPacket parseAck(ByteBuffer buffer) {
+    short blockNumber = buffer.getShort();
+    return new AckPacket(blockNumber);
   }
 }

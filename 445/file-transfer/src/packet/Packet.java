@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.util.Optional;
 
 public abstract class Packet {
-  final Opcode opcode;
+  public final Opcode opcode;
 
   protected Packet(Opcode opcode) {
     this.opcode = opcode;
@@ -28,15 +28,15 @@ public abstract class Packet {
 
     switch (opcode.code) {
       case 1:
-        return RequestPacket.parse(Opcode.RRQ, buffer);
+        return RequestPacket.parseRequest(Opcode.RRQ, buffer);
       case 2:
-        return RequestPacket.parse(Opcode.WRQ, buffer);
+        return RequestPacket.parseRequest(Opcode.WRQ, buffer);
       case 3:
-        return DataPacket.parse(buffer);
+        return DataPacket.parseData(buffer);
       case 4:
-        return AckPacket.parse(buffer);
+        return AckPacket.parseAck(buffer);
       case 5:
-        return ErrorPacket.parse(buffer);
+        return ErrorPacket.parseError(buffer);
       default:
         throw new ParseException("Invalid opcode", 0);
     }

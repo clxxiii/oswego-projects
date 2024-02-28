@@ -1,10 +1,12 @@
 package packet;
 
 import java.nio.ByteBuffer;
+import java.text.ParseException;
+import java.util.Optional;
 
 public class ErrorPacket extends Packet {
-  ErrorCode errorCode;
-  String errorMsg;
+  final public ErrorCode errorCode;
+  final public String errorMsg;
 
   public ErrorPacket(ErrorCode code, String msg) {
     super(Opcode.ERROR);
@@ -26,5 +28,19 @@ public class ErrorPacket extends Packet {
 
     buffer.flip();
     return buffer.array();
+  }
+
+  protected static ErrorPacket parseError(ByteBuffer buffer) throws ParseException {
+    short codeId = buffer.getShort();
+    byte[] remainingBytes = new byte[buffer.remaining()];
+    buffer.get(remainingBytes);
+    String[] data = new String(remainingBytes).split("\0");
+    String errorMsg = data[0];
+    Optional<ErrorCode> opErrorCode = ErrorCode.fromCode(codeId);
+    if (!opErrorCode.isPresent()) {
+      throw new ParseException("Invalid Error Code", Short.BYTES * 2);
+    }
+    ErrorCode errorCode = opErrorCode.get();
+    return new ErrorPacket(errorCode, errorMsg);
   }
 }
