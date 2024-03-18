@@ -39,6 +39,7 @@ public abstract class Packet {
         return ErrorPacket.parseError(buffer);
       default:
         throw new ParseException("Invalid opcode", 0);
+
     }
   }
 

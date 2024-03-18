@@ -80,6 +80,9 @@ public class PacketTests {
     assertEquals(packet.opcode, code);
     assertEquals(packet.fileName, file);
     assertEquals(packet.mode, mode);
+
+    long i = 0;
+    short j = (short) i;
   }
 
   @Test
