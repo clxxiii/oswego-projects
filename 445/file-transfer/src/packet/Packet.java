@@ -11,11 +11,7 @@ public abstract class Packet {
     this.opcode = opcode;
   }
 
-  public abstract byte[] toBytes();
-
-  public static Packet parse(byte[] data) throws ParseException {
-    return parse(ByteBuffer.wrap(data));
-  }
+  public abstract ByteBuffer toBuffer();
 
   public static Packet parse(ByteBuffer buffer) throws ParseException {
     // Get and validate opcode

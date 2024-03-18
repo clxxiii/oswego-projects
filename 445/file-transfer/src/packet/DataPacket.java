@@ -13,7 +13,7 @@ public class DataPacket extends Packet {
     this.data = data;
   }
 
-  public byte[] toBytes() {
+  public ByteBuffer toBuffer() {
     int bufferLength = 2 + // Opcode length
         2 + // Block number length
         data.length;
@@ -24,7 +24,7 @@ public class DataPacket extends Packet {
     buffer.put(data);
 
     buffer.flip();
-    return buffer.array();
+    return buffer;
   }
 
   protected static DataPacket parseData(ByteBuffer buffer) {

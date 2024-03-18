@@ -22,7 +22,7 @@ public class RequestPacket extends Packet {
     this.options = options;
   }
 
-  public byte[] toBytes() {
+  public ByteBuffer toBuffer() {
     int bufferLength = 2 + // Opcode length
         fileName.getBytes().length +
         mode.getBytes().length +
@@ -46,7 +46,7 @@ public class RequestPacket extends Packet {
 
     if (options == null) {
       buffer.flip();
-      return buffer.array();
+      return buffer;
     }
 
     for (String key : options.keySet()) {
@@ -59,7 +59,7 @@ public class RequestPacket extends Packet {
     }
 
     buffer.flip();
-    return buffer.array();
+    return buffer;
   }
 
   protected static RequestPacket parseRequest(Opcode opcode, ByteBuffer buffer) {

@@ -18,7 +18,7 @@ public class AckPacket extends Packet {
     this.options = options;
   }
 
-  public byte[] toBytes() {
+  public ByteBuffer toBuffer() {
     int bufferLength = 2 + // Opcode length
         2; // Block number length
 
@@ -38,7 +38,7 @@ public class AckPacket extends Packet {
 
     if (options == null) {
       buffer.flip();
-      return buffer.array();
+      return buffer;
     }
 
     for (String key : options.keySet()) {
@@ -51,7 +51,7 @@ public class AckPacket extends Packet {
     }
 
     buffer.flip();
-    return buffer.array();
+    return buffer;
   }
 
   public static AckPacket parseAck(ByteBuffer buffer) {

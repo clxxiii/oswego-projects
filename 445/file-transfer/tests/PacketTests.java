@@ -3,6 +3,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 
+import java.nio.ByteBuffer;
 import java.text.ParseException;
 import java.util.HashMap;
 
@@ -15,7 +16,7 @@ public class PacketTests {
     AckPacket packet = new AckPacket(17);
     assertEquals(packet.blockNumber, 17);
     assertEquals(packet.opcode, Opcode.ACK);
-    byte[] data = packet.toBytes();
+    ByteBuffer data = packet.toBuffer();
     try {
       packet = (AckPacket) Packet.parse(data);
     } catch (ParseException e) {
@@ -33,7 +34,7 @@ public class PacketTests {
     AckPacket packet = new AckPacket(17, options);
     assertEquals(packet.blockNumber, 17);
     assertEquals(packet.opcode, Opcode.ACK);
-    byte[] data = packet.toBytes();
+    ByteBuffer data = packet.toBuffer();
     try {
       packet = (AckPacket) Packet.parse(data);
     } catch (ParseException e) {
@@ -54,7 +55,7 @@ public class PacketTests {
     assertEquals(packet.blockNumber, 17);
     assertEquals(packet.opcode, Opcode.DATA);
     assertTrue(packet.data.equals(msgBytes));
-    byte[] data = packet.toBytes();
+    ByteBuffer data = packet.toBuffer();
     try {
       packet = (DataPacket) Packet.parse(data);
     } catch (ParseException e) {
@@ -72,7 +73,7 @@ public class PacketTests {
     assertEquals(packet.opcode, Opcode.ERROR);
     assertEquals(packet.errorCode, ErrorCode.FILE_NOT_FOUND);
     assertEquals(packet.errorMsg, msg);
-    byte[] data = packet.toBytes();
+    ByteBuffer data = packet.toBuffer();
     try {
       packet = (ErrorPacket) Packet.parse(data);
     } catch (ParseException e) {
@@ -92,7 +93,7 @@ public class PacketTests {
     assertEquals(packet.opcode, code);
     assertEquals(packet.fileName, file);
     assertEquals(packet.mode, mode);
-    byte[] data = packet.toBytes();
+    ByteBuffer data = packet.toBuffer();
     try {
       packet = (RequestPacket) Packet.parse(data);
     } catch (ParseException e) {
@@ -114,7 +115,7 @@ public class PacketTests {
     assertEquals(packet.opcode, code);
     assertEquals(packet.fileName, file);
     assertEquals(packet.mode, mode);
-    byte[] data = packet.toBytes();
+    ByteBuffer data = packet.toBuffer();
     try {
       packet = (RequestPacket) Packet.parse(data);
     } catch (ParseException e) {

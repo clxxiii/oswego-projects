@@ -14,7 +14,7 @@ public class ErrorPacket extends Packet {
     errorMsg = msg;
   }
 
-  public byte[] toBytes() {
+  public ByteBuffer toBuffer() {
     int bufferLength = 2 + // Opcode length
         2 + // Error code length
         errorMsg.getBytes().length +
@@ -27,7 +27,7 @@ public class ErrorPacket extends Packet {
     buffer.put((byte) 0);
 
     buffer.flip();
-    return buffer.array();
+    return buffer;
   }
 
   protected static ErrorPacket parseError(ByteBuffer buffer) throws ParseException {
