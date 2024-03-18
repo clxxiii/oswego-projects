@@ -45,6 +45,7 @@ public class RequestPacket extends Packet {
     buffer.put((byte) 0);
 
     if (options == null) {
+      buffer.flip();
       return buffer.array();
     }
 

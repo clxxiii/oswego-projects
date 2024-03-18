@@ -26,6 +26,27 @@ public class PacketTests {
   }
 
   @Test
+  public void ackPacketOptionsTest() {
+    HashMap<String, String> options = new HashMap<>();
+    options.put("example_key", "Example Value!");
+
+    AckPacket packet = new AckPacket(17, options);
+    assertEquals(packet.blockNumber, 17);
+    assertEquals(packet.opcode, Opcode.ACK);
+    byte[] data = packet.toBytes();
+    try {
+      packet = (AckPacket) Packet.parse(data);
+    } catch (ParseException e) {
+      fail("Parse threw an error");
+    }
+    assertEquals(packet.blockNumber, 17);
+    assertEquals(packet.opcode, Opcode.ACK);
+
+    HashMap<String, String> packetOptions = packet.options;
+    assertEquals(packetOptions.get("example_key"), options.get("example_key"));
+  }
+
+  @Test
   public void dataPacketTest() {
     String message = "Hello World!";
     byte[] msgBytes = message.getBytes();
@@ -80,9 +101,6 @@ public class PacketTests {
     assertEquals(packet.opcode, code);
     assertEquals(packet.fileName, file);
     assertEquals(packet.mode, mode);
-
-    long i = 0;
-    short j = (short) i;
   }
 
   @Test
@@ -105,5 +123,8 @@ public class PacketTests {
     assertEquals(packet.opcode, code);
     assertEquals(packet.fileName, file);
     assertEquals(packet.mode, mode);
+
+    HashMap<String, String> packetOptions = packet.options;
+    assertEquals(packetOptions.get("example_key"), options.get("example_key"));
   }
 }
