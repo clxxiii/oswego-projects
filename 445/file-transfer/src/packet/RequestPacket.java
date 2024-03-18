@@ -9,6 +9,12 @@ public class RequestPacket extends Packet {
   public final String mode;
   public HashMap<String, String> options;
 
+  public RequestPacket(Opcode opcode, String fileName) {
+    super(opcode);
+    this.fileName = fileName;
+    this.mode = "octet";
+  }
+
   public RequestPacket(Opcode opcode, String fileName, String mode) {
     super(opcode);
     this.fileName = fileName;

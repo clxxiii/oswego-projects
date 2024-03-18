@@ -14,6 +14,12 @@ public class ErrorPacket extends Packet {
     errorMsg = msg;
   }
 
+  public ErrorPacket(ErrorCode code) {
+    super(Opcode.ERROR);
+    errorCode = code;
+    errorMsg = ""; // See specification
+  }
+
   public ByteBuffer toBuffer() {
     int bufferLength = 2 + // Opcode length
         2 + // Error code length
