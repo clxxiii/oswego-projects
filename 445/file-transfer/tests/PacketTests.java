@@ -27,21 +27,19 @@ public class PacketTests {
   }
 
   @Test
-  public void ackPacketOptionsTest() {
+  public void oackPacketTest() {
     HashMap<String, String> options = new HashMap<>();
     options.put("example_key", "Example Value!");
 
-    AckPacket packet = new AckPacket(17, options);
-    assertEquals(packet.blockNumber, 17);
-    assertEquals(packet.opcode, Opcode.ACK);
+    OAckPacket packet = new OAckPacket(options);
+    assertEquals(packet.opcode, Opcode.OACK);
     ByteBuffer data = packet.toBuffer();
     try {
-      packet = (AckPacket) Packet.parse(data);
+      packet = (OAckPacket) Packet.parse(data);
     } catch (ParseException e) {
       fail("Parse threw an error");
     }
-    assertEquals(packet.blockNumber, 17);
-    assertEquals(packet.opcode, Opcode.ACK);
+    assertEquals(packet.opcode, Opcode.OACK);
 
     HashMap<String, String> packetOptions = packet.options;
     assertEquals(packetOptions.get("example_key"), options.get("example_key"));

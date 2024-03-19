@@ -1,0 +1,17 @@
+{
+	"configurations": [
+		{
+			"type": "java",
+			"name": "WRQ Client",
+			"request": "launch",
+			"mainClass": "tftp.App",
+			"args": "./rice.png localhost:/home/eli/rice.png"
+		},
+		{
+			"type": "java",
+			"name": "WRQ Server",
+			"request": "launch",
+			"mainClass": "tftpd.App"
+		}
+	]
+}

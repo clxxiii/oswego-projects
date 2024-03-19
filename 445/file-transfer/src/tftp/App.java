@@ -7,9 +7,9 @@ import packet.Opcode;
 
 public class App {
   public static void main(String[] args) {
-    String[] vargs = { "-v", "file.txt", "cs.oswego.edu:~/file.txt" };
-    Namespace ns = Args.parse(vargs);
+    Namespace ns = Args.parse(args);
     ClientSession session = makeSession(ns);
+    session.begin();
   }
 
   public static ClientSession makeSession(Namespace ns) {

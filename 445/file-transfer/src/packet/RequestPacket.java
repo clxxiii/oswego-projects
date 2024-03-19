@@ -28,6 +28,13 @@ public class RequestPacket extends Packet {
     this.options = options;
   }
 
+  public RequestPacket(Opcode opcode, String fileName, HashMap<String, String> options) {
+    super(opcode);
+    this.fileName = fileName;
+    this.mode = "";
+    this.options = options;
+  }
+
   public ByteBuffer toBuffer() {
     int bufferLength = 2 + // Opcode length
         fileName.getBytes().length +
@@ -51,7 +58,6 @@ public class RequestPacket extends Packet {
     buffer.put((byte) 0);
 
     if (options == null) {
-      buffer.flip();
       return buffer;
     }
 
@@ -64,7 +70,6 @@ public class RequestPacket extends Packet {
       buffer.put((byte) 0);
     }
 
-    buffer.flip();
     return buffer;
   }
 

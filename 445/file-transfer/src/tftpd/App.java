@@ -8,15 +8,12 @@ import java.nio.channels.DatagramChannel;
 import java.text.ParseException;
 
 import net.sourceforge.argparse4j.inf.Namespace;
-import packet.ErrorCode;
-import packet.ErrorPacket;
-import packet.Opcode;
-import packet.Packet;
+import packet.*;
 
 public class App {
   public static void main(String[] args) {
     Namespace ns = Args.parse(args);
-    int port = ns.getInt("-p");
+    int port = Integer.valueOf(ns.getString("port"));
 
     DatagramChannel channel;
     try {
@@ -38,15 +35,14 @@ public class App {
     while (true) {
       try {
         remote = channel.receive(buffer);
-        channel.connect(remote);
       } catch (IOException e) {
         System.out.println(e);
         continue;
       }
 
-      Packet packet;
+      RequestPacket packet;
       try {
-        packet = Packet.parse(buffer);
+        packet = (RequestPacket) Packet.parse(buffer);
       } catch (ParseException e) {
         ErrorPacket errpacket = new ErrorPacket(ErrorCode.NOT_DEFINED, "Failed to parse the sent packet");
         sendError(channel, remote, errpacket.toBuffer());
@@ -56,6 +52,9 @@ public class App {
       if (!(packet.opcode == Opcode.RRQ || packet.opcode == Opcode.WRQ)) {
         sendError(channel, remote, new ErrorPacket(ErrorCode.ILLEGAL_OPERATION).toBuffer());
       }
+
+      ServerSession session = new ServerSession(packet.fileName, packet.opcode, channel);
+      session.begin();
     }
   }
 

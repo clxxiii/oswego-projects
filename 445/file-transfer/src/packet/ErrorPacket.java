@@ -32,7 +32,6 @@ public class ErrorPacket extends Packet {
     buffer.put(errorMsg.getBytes());
     buffer.put((byte) 0);
 
-    buffer.flip();
     return buffer;
   }
 

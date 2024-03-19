@@ -8,7 +8,8 @@ public enum Opcode {
   WRQ(2),
   DATA(3),
   ACK(4),
-  ERROR(5);
+  ERROR(5),
+  OACK(6);
 
   public final short code;
 

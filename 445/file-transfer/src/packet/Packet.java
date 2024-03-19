@@ -15,6 +15,7 @@ public abstract class Packet {
 
   public static Packet parse(ByteBuffer buffer) throws ParseException {
     // Get and validate opcode
+    buffer.flip();
     short code = buffer.getShort();
     Optional<Opcode> opOpcode = Opcode.fromCode(code);
     if (!opOpcode.isPresent()) {
@@ -33,6 +34,8 @@ public abstract class Packet {
         return AckPacket.parseAck(buffer);
       case 5:
         return ErrorPacket.parseError(buffer);
+      case 6:
+        return OAckPacket.parseOAck(buffer);
       default:
         throw new ParseException("Invalid opcode", 0);
 

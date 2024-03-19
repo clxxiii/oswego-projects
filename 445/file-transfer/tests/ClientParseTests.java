@@ -39,8 +39,8 @@ public class ClientParseTests {
     assertEquals("./file.txt", session.src);
     assertEquals("/home/efereira/file.txt", session.dst);
     assertEquals(Opcode.WRQ, session.code);
-    assertEquals("cs.oswego.edu", session.addr.getAddress().getHostName());
-    assertEquals(26904, session.addr.getPort());
+    assertEquals("cs.oswego.edu", session.remote.getAddress().getHostName());
+    assertEquals(26904, session.remote.getPort());
   }
 
   @Test
@@ -51,8 +51,8 @@ public class ClientParseTests {
     assertEquals("./file.txt", session.src);
     assertEquals("/home/efereira/file.txt", session.dst);
     assertEquals(Opcode.WRQ, session.code);
-    assertEquals("cs.oswego.edu", session.addr.getAddress().getHostName());
-    assertEquals(8080, session.addr.getPort());
+    assertEquals("cs.oswego.edu", session.remote.getAddress().getHostName());
+    assertEquals(8080, session.remote.getPort());
   }
 
   @Test
@@ -63,8 +63,8 @@ public class ClientParseTests {
     assertEquals("./file.txt", session.src);
     assertEquals("/home/efereira/file.txt", session.dst);
     assertEquals(Opcode.RRQ, session.code);
-    assertEquals("cs.oswego.edu", session.addr.getAddress().getHostName());
-    assertEquals(26904, session.addr.getPort());
+    assertEquals("cs.oswego.edu", session.remote.getAddress().getHostName());
+    assertEquals(26904, session.remote.getPort());
   }
 
   @Test
@@ -75,7 +75,7 @@ public class ClientParseTests {
     assertEquals("./file.txt", session.src);
     assertEquals("/home/efereira/file.txt", session.dst);
     assertEquals(Opcode.RRQ, session.code);
-    assertEquals("cs.oswego.edu", session.addr.getAddress().getHostName());
-    assertEquals(8080, session.addr.getPort());
+    assertEquals("cs.oswego.edu", session.remote.getAddress().getHostName());
+    assertEquals(8080, session.remote.getPort());
   }
 }

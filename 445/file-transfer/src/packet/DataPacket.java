@@ -23,7 +23,6 @@ public class DataPacket extends Packet {
     buffer.putShort(blockNumber);
     buffer.put(data);
 
-    buffer.flip();
     return buffer;
   }
 
