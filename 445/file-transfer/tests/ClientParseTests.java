@@ -36,8 +36,8 @@ public class ClientParseTests {
     String[] args = { "./file.txt", "cs.oswego.edu:/home/efereira/file.txt" };
     ClientSession session = App.makeSession(Args.parse(args));
 
-    assertEquals("./file.txt", session.src);
-    assertEquals("/home/efereira/file.txt", session.dst);
+    assertEquals("./file.txt", session.localPath);
+    assertEquals("/home/efereira/file.txt", session.remotePath);
     assertEquals(Opcode.WRQ, session.code);
     assertEquals("cs.oswego.edu", session.remote.getAddress().getHostName());
     assertEquals(26904, session.remote.getPort());
@@ -48,8 +48,8 @@ public class ClientParseTests {
     String[] args = { "./file.txt", "cs.oswego.edu:/home/efereira/file.txt", "-p", "8080" };
     ClientSession session = App.makeSession(Args.parse(args));
 
-    assertEquals("./file.txt", session.src);
-    assertEquals("/home/efereira/file.txt", session.dst);
+    assertEquals("./file.txt", session.localPath);
+    assertEquals("/home/efereira/file.txt", session.remotePath);
     assertEquals(Opcode.WRQ, session.code);
     assertEquals("cs.oswego.edu", session.remote.getAddress().getHostName());
     assertEquals(8080, session.remote.getPort());
@@ -60,8 +60,8 @@ public class ClientParseTests {
     String[] args = { "cs.oswego.edu:/home/efereira/file.txt", "./file.txt" };
     ClientSession session = App.makeSession(Args.parse(args));
 
-    assertEquals("./file.txt", session.src);
-    assertEquals("/home/efereira/file.txt", session.dst);
+    assertEquals("./file.txt", session.localPath);
+    assertEquals("/home/efereira/file.txt", session.remotePath);
     assertEquals(Opcode.RRQ, session.code);
     assertEquals("cs.oswego.edu", session.remote.getAddress().getHostName());
     assertEquals(26904, session.remote.getPort());
@@ -72,8 +72,8 @@ public class ClientParseTests {
     String[] args = { "cs.oswego.edu:/home/efereira/file.txt", "./file.txt", "--port", "8080" };
     ClientSession session = App.makeSession(Args.parse(args));
 
-    assertEquals("./file.txt", session.src);
-    assertEquals("/home/efereira/file.txt", session.dst);
+    assertEquals("./file.txt", session.localPath);
+    assertEquals("/home/efereira/file.txt", session.remotePath);
     assertEquals(Opcode.RRQ, session.code);
     assertEquals("cs.oswego.edu", session.remote.getAddress().getHostName());
     assertEquals(8080, session.remote.getPort());

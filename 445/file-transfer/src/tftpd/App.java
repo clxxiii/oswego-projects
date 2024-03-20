@@ -53,7 +53,7 @@ public class App {
         sendError(channel, remote, new ErrorPacket(ErrorCode.ILLEGAL_OPERATION).toBuffer());
       }
 
-      ServerSession session = new ServerSession(packet.fileName, packet.opcode, channel);
+      ServerSession session = new ServerSession(packet, channel);
       session.begin();
     }
   }
