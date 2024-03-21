@@ -14,12 +14,11 @@ public class App {
   public static void main(String[] args) {
     Namespace ns = Args.parse(args);
     int port = Integer.valueOf(ns.getString("port"));
+    InetSocketAddress local = new InetSocketAddress("127.0.0.1", port);
 
     DatagramChannel channel;
     try {
-      channel = DatagramChannel.open();
-      InetSocketAddress local = new InetSocketAddress("localhost", port);
-      channel.bind(local);
+      channel = DatagramChannel.open().bind(local);
       recieveData(channel);
       channel.close();
     } catch (IOException e) {

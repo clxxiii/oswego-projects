@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.DatagramChannel;
 import java.util.HashMap;
+import java.util.Optional;
 
 import object.Session;
 import object.File;
@@ -13,8 +14,6 @@ public class ClientSession extends Session {
   public final String localPath; // File on local fs
   public final String remotePath; // File on remote fs
   public final Opcode code; // RRQ or WRQ: Reading from server or writing to server
-  public final InetSocketAddress remote;
-  public DatagramChannel channel;
 
   public ClientSession(String src, String dst, Opcode code, InetSocketAddress remote) {
     this.localPath = src;
@@ -52,6 +51,13 @@ public class ClientSession extends Session {
 
     RequestPacket req = new RequestPacket(code, remotePath);
     send(req);
+
+    // Wait for response
+    Optional<Packet> oack = recieve();
+
+    if (!oack.isPresent()) {
+      System.exit(1);
+    }
   }
 
   private void downloadFile() {

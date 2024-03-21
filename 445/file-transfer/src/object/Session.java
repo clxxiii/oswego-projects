@@ -26,6 +26,7 @@ public class Session {
     }
 
     try {
+      buffer.flip();
       channel.send(buffer, remote);
     } catch (IOException e) {
       System.out.println("Failed to send a packet:");
@@ -39,6 +40,7 @@ public class Session {
 
     try {
       channel.receive(buffer);
+      buffer.flip();
     } catch (IOException e) {
       System.out.println(e);
       return Optional.empty();
