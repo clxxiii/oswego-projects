@@ -4,8 +4,8 @@ import java.nio.ByteBuffer;
 
 public class DataPacket extends Packet {
 
-  final public short blockNumber;
-  final public byte[] data;
+  public final short blockNumber;
+  public final byte[] data;
 
   public DataPacket(int blockNumber, byte[] data) {
     super(Opcode.DATA);

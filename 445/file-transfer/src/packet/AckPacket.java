@@ -3,7 +3,7 @@ package packet;
 import java.nio.ByteBuffer;
 
 public class AckPacket extends Packet {
-  final public short blockNumber;
+  public final short blockNumber;
 
   public AckPacket(int blockNumber) {
     super(Opcode.ACK);

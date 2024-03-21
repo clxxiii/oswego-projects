@@ -5,8 +5,8 @@ import java.text.ParseException;
 import java.util.Optional;
 
 public class ErrorPacket extends Packet {
-  final public ErrorCode errorCode;
-  final public String errorMsg;
+  public final ErrorCode errorCode;
+  public final String errorMsg;
 
   public ErrorPacket(ErrorCode code, String msg) {
     super(Opcode.ERROR);
