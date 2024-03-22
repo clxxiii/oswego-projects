@@ -1,12 +1,8 @@
 package tftp;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
 
 import net.sourceforge.argparse4j.inf.Namespace;
-import packet.AckPacket;
 import packet.Opcode;
 
 public class App {

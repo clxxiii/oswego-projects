@@ -40,7 +40,6 @@ public class Session {
 
     try {
       channel.receive(buffer);
-      buffer.flip();
     } catch (IOException e) {
       System.out.println(e);
       return Optional.empty();
@@ -57,8 +56,10 @@ public class Session {
     if (packet.opcode == Opcode.ERROR) {
       ErrorPacket error = (ErrorPacket) packet;
       System.out.print(error.errorCode.meaning);
-      if (error.errorMsg != null) {
+      if (error.errorMsg != null && error.errorMsg.length() > 0) {
         System.out.println(": " + error.errorMsg);
+      } else {
+        System.out.println(); // Print new line if no message
       }
       System.exit(1);
     }

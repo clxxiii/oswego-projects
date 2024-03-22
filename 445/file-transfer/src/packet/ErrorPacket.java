@@ -37,15 +37,22 @@ public class ErrorPacket extends Packet {
 
   protected static ErrorPacket parseError(ByteBuffer buffer) throws ParseException {
     short codeId = buffer.getShort();
-    byte[] remainingBytes = new byte[buffer.remaining()];
-    buffer.get(remainingBytes);
-    String[] data = new String(remainingBytes).split("\0");
-    String errorMsg = data[0];
     Optional<ErrorCode> opErrorCode = ErrorCode.fromCode(codeId);
     if (!opErrorCode.isPresent()) {
       throw new ParseException("Invalid Error Code", Short.BYTES * 2);
     }
+
     ErrorCode errorCode = opErrorCode.get();
+
+    byte[] remainingBytes = new byte[buffer.remaining()];
+    buffer.get(remainingBytes);
+    String[] data = new String(remainingBytes).split("\0");
+
+    if (data.length <= 0) {
+      return new ErrorPacket(errorCode);
+    }
+
+    String errorMsg = data[0];
     return new ErrorPacket(errorCode, errorMsg);
   }
 }

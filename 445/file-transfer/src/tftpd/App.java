@@ -30,10 +30,10 @@ public class App {
 
   private static void recieveData(DatagramChannel channel) {
     ByteBuffer buffer = ByteBuffer.allocate(512);
-    SocketAddress remote = null;
+    InetSocketAddress remote = null;
     while (true) {
       try {
-        remote = channel.receive(buffer);
+        remote = (InetSocketAddress) channel.receive(buffer);
       } catch (IOException e) {
         System.out.println(e);
         continue;
@@ -52,7 +52,7 @@ public class App {
         sendError(channel, remote, new ErrorPacket(ErrorCode.ILLEGAL_OPERATION).toBuffer());
       }
 
-      ServerSession session = new ServerSession(packet, channel);
+      ServerSession session = new ServerSession(packet, channel, remote);
       session.begin();
     }
   }

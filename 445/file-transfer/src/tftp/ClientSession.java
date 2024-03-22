@@ -1,6 +1,9 @@
 package tftp;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.nio.channels.DatagramChannel;
 import java.util.HashMap;
@@ -58,6 +61,40 @@ public class ClientSession extends Session {
     if (!oack.isPresent()) {
       System.exit(1);
     }
+
+    FileInputStream in;
+    try {
+      in = new FileInputStream(local);
+    } catch (FileNotFoundException e) {
+      System.out.println("Something terribly bad has gone wrong.");
+      System.exit(1);
+      return;
+    }
+
+    byte[] dataBuffer = new byte[512];
+    int blockNumber = 1;
+    try {
+      while (in.available() >= 0) {
+        if (in.available() == 0) {
+          send(new DataPacket(blockNumber, new byte[0]));
+          break;
+        }
+        in.read(dataBuffer, 0, 512);
+
+        send(new DataPacket(blockNumber, dataBuffer));
+        Optional<Packet> ack = recieve();
+        if (!ack.isPresent()) {
+          in.close();
+          throw new IOException();
+        }
+      }
+      in.close();
+    } catch (IOException e) {
+      System.out.println(e);
+      System.exit(1);
+      return;
+    }
+
   }
 
   private void downloadFile() {
