@@ -19,8 +19,7 @@ public class App {
     DatagramChannel channel;
     try {
       channel = DatagramChannel.open().bind(local);
-      recieveData(channel);
-      channel.close();
+      awaitHandshakes(channel);
     } catch (IOException e) {
       System.out.println(e);
       System.exit(1);
@@ -28,7 +27,7 @@ public class App {
     }
   }
 
-  private static void recieveData(DatagramChannel channel) {
+  private static void awaitHandshakes(DatagramChannel channel) {
     ByteBuffer buffer = ByteBuffer.allocate(512);
     InetSocketAddress remote = null;
     while (true) {
@@ -42,6 +41,7 @@ public class App {
       RequestPacket packet;
       try {
         packet = (RequestPacket) Packet.parse(buffer);
+        buffer.clear();
       } catch (ParseException e) {
         ErrorPacket errpacket = new ErrorPacket(ErrorCode.NOT_DEFINED, "Failed to parse the sent packet");
         sendError(channel, remote, errpacket.toBuffer());
@@ -57,7 +57,8 @@ public class App {
     }
   }
 
-  private static void sendError(DatagramChannel channel, SocketAddress addr, ByteBuffer b) {
+  private static void sendError(DatagramChannel channel, SocketAddress addr,
+      ByteBuffer b) {
     try {
       channel.connect(addr);
       channel.send(b, addr);

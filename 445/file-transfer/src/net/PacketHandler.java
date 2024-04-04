@@ -1,4 +1,4 @@
-package object;
+package net;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -6,18 +6,37 @@ import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.text.ParseException;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 import packet.ErrorPacket;
 import packet.Opcode;
 import packet.Packet;
 
-public class Session {
+public class PacketHandler {
   public InetSocketAddress remote;
   public DatagramChannel channel;
 
   public final int MAX_PACKET_SIZE = 512 + 4; // Data has header size of 4, plus 512 bytes of data
 
+  public final int DROP_CHANCE = 100;
+  public static boolean dropMode = false;
+
+  public PacketHandler() {
+  }
+
+  public PacketHandler(DatagramChannel channel, InetSocketAddress remote) {
+    this.channel = channel;
+    this.remote = remote;
+  }
+
   public void send(Packet p) {
+    if (dropMode) {
+      int random = ThreadLocalRandom.current().nextInt(DROP_CHANCE);
+      if (random == 0) {
+        return;
+      }
+    }
+
     ByteBuffer buffer = p.toBuffer();
 
     if (buffer.capacity() > MAX_PACKET_SIZE) {

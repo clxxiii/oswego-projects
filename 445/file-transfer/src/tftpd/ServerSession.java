@@ -1,18 +1,21 @@
 package tftpd;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.DatagramChannel;
 import java.util.HashMap;
-import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
-import object.Session;
+import net.FileReciever;
+import net.FileSender;
+import net.PacketHandler;
 import object.File;
+import object.Key;
 import packet.*;
 
-public class ServerSession extends Session {
+public class ServerSession extends PacketHandler {
   public final RequestPacket request;
+  private File local;
+  private Key key;
 
   final int MAX_PACKET_SIZE = 512 + 4; // Data has header size of 4, plus 512 bytes of data
 
@@ -20,80 +23,52 @@ public class ServerSession extends Session {
     this.request = packet;
     this.channel = channel;
     this.remote = addr;
-
-    // try {
-    // this.channel.connect(remote);
-    // } catch (IOException e) {
-    // System.out.println("Cannot build session without remote address:");
-    // System.out.println(e);
-    // }
   }
 
   public void begin() {
-    if (request.opcode == Opcode.RRQ) {
-      sendFile();
+    local = new File(request.fileName);
+    int windowSize = Integer.valueOf(request.options.get("window"));
+
+    if (!validate()) {
+      return;
+    }
+    OAckPacket oack = handshake();
+
+    long requestRand = Long.valueOf(request.options.get("random"));
+    long oackRand = Long.valueOf(oack.options.get("random"));
+
+    key = new Key(requestRand ^ oackRand);
+
+    if (request.opcode == Opcode.WRQ) {
+      FileReciever r = new FileReciever(local, key, channel, remote);
+      r.begin();
     } else {
-      recieveFile();
+      FileSender s = new FileSender(local, key, windowSize, channel, remote);
+      s.begin();
     }
   }
 
-  public void sendFile() {
-    File localFile = new File(request.fileName);
-
-    if (!localFile.exists()) {
+  public boolean validate() {
+    if (request.opcode == Opcode.RRQ && !local.exists()) {
       send(new ErrorPacket(ErrorCode.FILE_NOT_FOUND));
-      return;
+      return false;
     }
 
-    if (!localFile.canRead()) {
-      send(new ErrorPacket(ErrorCode.ACCESS_VIOLATION));
+    if (request.opcode == Opcode.WRQ && local.exists()) {
+      send(new ErrorPacket(ErrorCode.FILE_EXISTS));
+      return false;
     }
 
-    HashMap<String, String> options = new HashMap<>();
-    options.put("length", String.valueOf(localFile.length()));
-
-    send(new OAckPacket(options));
+    return true;
   }
 
-  public void recieveFile() {
-    File localFile = new File(request.fileName);
+  private OAckPacket handshake() {
+    HashMap<String, String> options = new HashMap<>();
+    long rand = ThreadLocalRandom.current().nextLong();
+    options.put("random", String.valueOf(rand));
 
-    if (localFile.exists()) {
-      send(new ErrorPacket(ErrorCode.FILE_EXISTS));
-      return;
-    }
-
-    try {
-      localFile.createNewFile();
-    } catch (IOException e) {
-      send(new ErrorPacket(ErrorCode.ACCESS_VIOLATION));
-      return;
-    }
-
-    send(new OAckPacket(request.options));
-
-    try {
-      FileOutputStream out = new FileOutputStream(localFile);
-      while (true) {
-        Optional<Packet> data = recieve();
-        if (data.isEmpty()) {
-          out.close();
-          throw new IOException();
-        }
-
-        DataPacket packet = (DataPacket) data.get();
-
-        out.write(packet.data);
-        send(new AckPacket(packet.blockNumber));
-
-        if (packet.data.length < 512) {
-          out.close();
-          break;
-        }
-      }
-    } catch (IOException e) {
-      System.out.println(e);
-      System.exit(1);
-    }
+    OAckPacket packet = new OAckPacket(options);
+    send(packet);
+    return packet;
   }
 }

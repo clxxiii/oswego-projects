@@ -2,6 +2,7 @@ package tftp;
 
 import java.net.InetSocketAddress;
 
+import net.PacketHandler;
 import net.sourceforge.argparse4j.inf.Namespace;
 import packet.Opcode;
 
@@ -16,6 +17,9 @@ public class App {
     String file1 = ns.getString("src");
     String file2 = ns.getString("dst");
     int port = Integer.valueOf(ns.getString("port"));
+    int windowSize = Integer.valueOf(ns.getString("window_size"));
+
+    PacketHandler.dropMode = Boolean.parseBoolean(ns.getString("drop_packets"));
 
     String src; // The filename on the local fs
     String dst; // The filename on the remote fs
@@ -38,6 +42,6 @@ public class App {
       dst = serverSplit[1];
     }
 
-    return new ClientSession(src, dst, code, addr);
+    return new ClientSession(src, dst, windowSize, code, addr);
   }
 }

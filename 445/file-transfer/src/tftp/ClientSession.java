@@ -1,31 +1,35 @@
 package tftp;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.nio.channels.DatagramChannel;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
-import object.Session;
+import net.FileReciever;
+import net.FileSender;
+import net.PacketHandler;
 import object.File;
+import object.Key;
 import packet.*;
 
-public class ClientSession extends Session {
+public class ClientSession extends PacketHandler {
   public final String localPath; // File on local fs
   public final String remotePath; // File on remote fs
   public final Opcode code; // RRQ or WRQ: Reading from server or writing to server
+  private File local;
+  private Key key;
+  private RequestPacket request;
+  private int windowSize;
 
-  public ClientSession(String src, String dst, Opcode code, InetSocketAddress remote) {
+  public ClientSession(String src, String dst, int windowSize, Opcode code, InetSocketAddress remote) {
     this.localPath = src;
     this.remotePath = dst;
     this.code = code;
     this.remote = remote;
-  }
+    this.windowSize = windowSize;
 
-  public void begin() {
     try {
       channel = DatagramChannel.open();
       channel.connect(remote);
@@ -33,27 +37,48 @@ public class ClientSession extends Session {
       System.out.println("Failed to connect");
       System.exit(1);
     }
+  }
+
+  public void begin() {
+    local = new File(localPath);
+
+    validate();
+    OAckPacket oack = handshake();
+
+    long requestRand = Long.valueOf(request.options.get("random"));
+    long oackRand = Long.valueOf(oack.options.get("random"));
+
+    key = new Key(requestRand ^ oackRand);
 
     if (code == Opcode.RRQ) {
-      downloadFile();
+      FileReciever r = new FileReciever(local, key, channel, remote);
+      r.begin();
     } else {
-      uploadFile();
+      FileSender s = new FileSender(local, key, windowSize, channel, remote);
+      s.begin();
     }
   }
 
-  private void uploadFile() {
-    // Handshake
-    File local = new File(localPath);
-
-    if (!local.exists() || !local.canRead()) {
-      System.out.println("Cannot find file: " + local.getAbsolutePath());
+  private void validate() {
+    if (code == Opcode.RRQ && local.exists()) {
+      System.out.println("File at " + local.getAbsolutePath() + " already exists, cancelling download.");
+      System.exit(1);
     }
 
-    HashMap<String, String> options = new HashMap<>();
-    options.put("length", String.valueOf(local.length()));
+    if (code == Opcode.WRQ && (!local.exists() || !local.canRead())) {
+      System.out.println("Cannot find file: " + local.getAbsolutePath());
+      System.exit(1);
+    }
+  }
 
-    RequestPacket req = new RequestPacket(code, remotePath);
-    send(req);
+  private OAckPacket handshake() {
+    HashMap<String, String> options = new HashMap<>();
+    long random = ThreadLocalRandom.current().nextLong();
+    options.put("random", String.valueOf(random));
+    options.put("window", String.valueOf(windowSize));
+
+    request = new RequestPacket(code, remotePath, options);
+    send(request);
 
     // Wait for response
     Optional<Packet> oack = recieve();
@@ -62,54 +87,6 @@ public class ClientSession extends Session {
       System.exit(1);
     }
 
-    FileInputStream in;
-    try {
-      in = new FileInputStream(local);
-    } catch (FileNotFoundException e) {
-      System.out.println("Something terribly bad has gone wrong.");
-      System.exit(1);
-      return;
-    }
-
-    byte[] dataBuffer = new byte[512];
-    int blockNumber = 1;
-    try {
-      while (in.available() >= 0) {
-        if (in.available() == 0) {
-          send(new DataPacket(blockNumber, new byte[0]));
-          break;
-        }
-        in.read(dataBuffer, 0, 512);
-
-        send(new DataPacket(blockNumber, dataBuffer));
-        Optional<Packet> ack = recieve();
-        if (!ack.isPresent()) {
-          in.close();
-          throw new IOException();
-        }
-      }
-      in.close();
-    } catch (IOException e) {
-      System.out.println(e);
-      System.exit(1);
-      return;
-    }
-
-  }
-
-  private void downloadFile() {
-    // Handshake
-    File local = new File(localPath);
-
-    if (local.exists()) {
-      System.out.println("File at " + local.getAbsolutePath() + " already exists, cancelling download.");
-    }
-
-    if (!local.canWrite()) {
-      System.out.println("Cannot write to " + local.getAbsolutePath() + ", cancelling download.");
-    }
-
-    RequestPacket req = new RequestPacket(code, remotePath);
-    send(req);
+    return (OAckPacket) oack.get();
   }
 }

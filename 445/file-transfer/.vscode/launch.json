@@ -5,11 +5,25 @@
 			"name": "WRQ Client",
 			"request": "launch",
 			"mainClass": "tftp.App",
-			"args": "./rice.png 127.0.0.1:/home/eli/rice.png"
+			"args": "/home/eli/rice.png 127.0.0.1:/home/eli/copy.png"
 		},
 		{
 			"type": "java",
-			"name": "WRQ Server",
+			"name": "RRQ Client",
+			"request": "launch",
+			"mainClass": "tftp.App",
+			"args": "127.0.0.1:/home/eli/rice.png /home/eli/copy.png"
+		},
+		{
+			"type": "java",
+			"name": "WRQ Drop Client",
+			"request": "launch",
+			"mainClass": "tftp.App",
+			"args": "/home/eli/rice.png 127.0.0.1:/home/eli/copy.png -D"
+		},
+		{
+			"type": "java",
+			"name": "Server",
 			"request": "launch",
 			"mainClass": "tftpd.App"
 		}

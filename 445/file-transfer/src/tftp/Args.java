@@ -26,6 +26,9 @@ public class Args {
     parser.addArgument("-p", "--port")
         .help("Specify which port to connect to")
         .setDefault(26904);
+    parser.addArgument("-w", "--window-size")
+        .help("Specify the window size for the program.")
+        .setDefault(5);
     parser.addArgument("-D", "--drop-packets")
         .help("Randomly drops 1% of packets to test packet recovery")
         .setDefault(false)
