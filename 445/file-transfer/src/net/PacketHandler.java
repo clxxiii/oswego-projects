@@ -2,6 +2,7 @@ package net;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.PortUnreachableException;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.text.ParseException;
@@ -30,6 +31,10 @@ public class PacketHandler {
   }
 
   public void send(Packet p) {
+    if (p == null) {
+      return;
+    }
+
     if (dropMode) {
       int random = ThreadLocalRandom.current().nextInt(DROP_CHANCE);
       if (random == 0) {
@@ -59,6 +64,9 @@ public class PacketHandler {
 
     try {
       channel.receive(buffer);
+    } catch (PortUnreachableException e) {
+      System.out.println("Could not connect to " + remote.getAddress().toString() + ":" + remote.getPort());
+      System.exit(1);
     } catch (IOException e) {
       System.out.println(e);
       return Optional.empty();

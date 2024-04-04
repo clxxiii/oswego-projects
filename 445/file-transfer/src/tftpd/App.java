@@ -14,7 +14,7 @@ public class App {
   public static void main(String[] args) {
     Namespace ns = Args.parse(args);
     int port = Integer.valueOf(ns.getString("port"));
-    InetSocketAddress local = new InetSocketAddress("127.0.0.1", port);
+    InetSocketAddress local = new InetSocketAddress(port);
 
     DatagramChannel channel;
     try {

@@ -5,7 +5,7 @@
 			"name": "WRQ Client",
 			"request": "launch",
 			"mainClass": "tftp.App",
-			"args": "/home/eli/rice.png 127.0.0.1:/home/eli/copy.png"
+			"args": "/home/eli/rice.png 127.0.0.1:/home/eli/copy.png -w 50"
 		},
 		{
 			"type": "java",

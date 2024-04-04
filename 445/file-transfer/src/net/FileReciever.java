@@ -5,8 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.DatagramChannel;
-import java.util.HashMap;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 import object.Key;
 import packet.*;
@@ -16,7 +16,7 @@ public class FileReciever extends PacketHandler {
   File localFile;
   FileOutputStream out;
   private short lastStoredBlock;
-  private HashMap<Short, DataPacket> cache;
+  private ConcurrentHashMap<Short, DataPacket> cache;
   private boolean recievedLastPacket;
   private Key key;
 
@@ -25,7 +25,7 @@ public class FileReciever extends PacketHandler {
     localFile = file;
     this.key = key;
     lastStoredBlock = 0;
-    cache = new HashMap<>();
+    cache = new ConcurrentHashMap<>();
     recievedLastPacket = false;
   }
 

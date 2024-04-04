@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.nio.channels.DatagramChannel;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
 import object.Key;
@@ -16,7 +16,7 @@ public class FileSender extends PacketHandler {
   private File localFile;
   private short windowMin;
   private short lastStored;
-  private volatile HashMap<Short, DataPacket> cache;
+  private volatile ConcurrentHashMap<Short, DataPacket> cache;
   private InputStream in;
   private Key key;
   protected long start;
@@ -31,7 +31,7 @@ public class FileSender extends PacketHandler {
     this.key = key;
     windowMin = 1;
     lastStored = 0;
-    cache = new HashMap<>();
+    cache = new ConcurrentHashMap<>();
     WINDOW_SIZE = windowSize;
   }
 
